@@ -1,0 +1,57 @@
+@model IEnumerable<DoAnCoSo.Models.PhuongTienVanChuyen>
+
+@{
+    ViewData["Title"] = "Quản lý phương tiện vận chuyển";
+}
+
+<div class="container mt-4">
+    <h2>Quản lý phương tiện vận chuyển</h2>
+
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">Thêm phương tiện mới</a>
+        <a asp-controller="VanChuyen" asp-action="Index" class="btn btn-secondary">Quay lại quản lý vận chuyển</a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Danh sách phương tiện vận chuyển</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã phương tiện</th>
+                        <th>Loại phương tiện</th>
+                        <th>Trọng tải (kg)</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaPhuongTien</td>
+                            <td>@item.LoaiPhuongTien</td>
+                            <td>@item.TrongTai</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a asp-action="Edit" asp-route-id="@item.MaPhuongTien" class="btn btn-sm btn-warning">Sửa</a>
+                                    <a asp-action="Details" asp-route-id="@item.MaPhuongTien" class="btn btn-sm btn-info">Chi tiết</a>
+                                    <a asp-action="Delete" asp-route-id="@item.MaPhuongTien" class="btn btn-sm btn-danger">Xóa</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 

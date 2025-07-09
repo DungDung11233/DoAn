@@ -1,0 +1,45 @@
+@model DoAnCoSo.Models.PhuongTienVanChuyen
+
+@{
+    ViewData["Title"] = "Xóa phương tiện vận chuyển";
+}
+
+<div class="container mt-4">
+    <h2>Xóa phương tiện vận chuyển</h2>
+
+    <div class="alert alert-danger">
+        <h5><i class="bi bi-exclamation-triangle-fill me-2"></i>Bạn có chắc chắn muốn xóa phương tiện này?</h5>
+        <p>Lưu ý: Thao tác này không thể khôi phục.</p>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Thông tin phương tiện</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Mã phương tiện:</dt>
+                <dd class="col-sm-9">@Model.MaPhuongTien</dd>
+
+                <dt class="col-sm-3">Loại phương tiện:</dt>
+                <dd class="col-sm-9">@Model.LoaiPhuongTien</dd>
+
+                <dt class="col-sm-3">Trọng tải (kg):</dt>
+                <dd class="col-sm-9">@Model.TrongTai</dd>
+            </dl>
+
+            @if (Model.PhieuVanChuyens != null && Model.PhieuVanChuyens.Any())
+            {
+                <div class="alert alert-warning">
+                    <p><strong>Cảnh báo:</strong> Phương tiện này đã được sử dụng trong @Model.PhieuVanChuyens.Count phiếu vận chuyển. Việc xóa có thể ảnh hưởng đến dữ liệu liên quan.</p>
+                </div>
+            }
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="MaPhuongTien" />
+                <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+                <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+            </form>
+        </div>
+    </div>
+</div> 

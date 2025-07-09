@@ -1,0 +1,86 @@
+4/17/2025 3:48:15 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:48:15 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:48:15 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:48:15 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:48:15 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:48:15 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:48:15 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:48:15 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:48:15 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:48:15 PM - Validation Error: The ChiTietNhanViens field is required.
+4/17/2025 3:48:16 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:48:16 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:48:16 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:48:16 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:48:16 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:48:16 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:48:16 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:48:16 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:48:16 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:48:16 PM - Validation Error: The ChiTietNhanViens field is required.
+4/17/2025 3:49:17 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:49:17 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:49:17 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:49:17 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:49:17 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:49:17 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:49:17 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:49:17 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:49:17 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:49:17 PM - Validation Error: The ChiTietNhanViens field is required.
+4/17/2025 3:49:18 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:49:18 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:49:18 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:49:18 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:49:18 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:49:18 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:49:18 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:49:18 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:49:18 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:49:18 PM - Validation Error: The ChiTietNhanViens field is required.
+4/17/2025 3:49:19 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:49:19 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:49:19 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:49:19 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietNhanViens field is required.
+4/17/2025 3:49:19 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:49:19 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:49:19 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:49:19 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:49:19 PM - Validation Error: The ChiTietNhanViens field is required.
+4/17/2025 3:49:23 PM - Validation Error: The MoTa field is required.
+4/17/2025 3:49:23 PM - Validation Error: The DanhGias field is required.
+4/17/2025 3:49:23 PM - Validation Error: The ChiTietMuas field is required.
+4/17/2025 3:49:23 PM - Validation Error: The ChiTietDanhMucs field is required.
+4/17/2025 3:49:23 PM - Validation Error: The ChiTietDonHangs field is required.
+4/17/2025 3:49:23 PM - Validation Error: The ChiTietKhoHangs field is required.
+4/17/2025 3:49:23 PM - Validation Error: The ChiTietSanPhams field is required.
+4/17/2025 3:49:23 PM - Validation Error: The HinhAnhSanPhams field is required.
+4/17/2025 3:49:23 PM - Validation Error: The PhanTichNhuCaus field is required.
+4/17/2025 3:49:23 PM - Validation Error: The ChiTietNhanViens field is required.
+[2025-05-13 15:26:20] Bắt đầu tạo phiếu nhập hàng mới
+[2025-05-13 15:26:20] Đã thêm sản phẩm 'LỒN DŨNG' với số lượng 5
+[2025-05-13 15:26:20] Bắt đầu giao dịch tạo phiếu nhập hàng mới
+[2025-05-13 15:26:20] Bắt đầu đồng bộ phiếu nhập hàng ID: 4 vào 5/13/2025 3:26:20 PM
+[2025-05-13 15:26:20] Cập nhật số lượng sản phẩm 'LỒN DŨNG' (ID: 5) thành 10
+[2025-05-13 15:26:20] Hoàn thành đồng bộ phiếu nhập hàng ID: 4 vào 5/13/2025 3:26:20 PM
+[2025-05-13 15:26:20] Hoàn thành giao dịch tạo phiếu nhập hàng ID: 4
+[2025-05-13 15:26:20] Hoàn thành tạo phiếu nhập hàng và đồng bộ sản phẩm
+[2025-05-13 15:29:19] Bắt đầu tạo phiếu nhập hàng mới
+[2025-05-13 15:29:19] Đã thêm sản phẩm 'CẶC DŨNG LÒ VOI' với số lượng 1
+[2025-05-13 15:29:19] Bắt đầu giao dịch tạo phiếu nhập hàng mới
+[2025-05-13 15:29:19] Bắt đầu đồng bộ phiếu nhập hàng ID: 5 vào 5/13/2025 3:29:19 PM
+[2025-05-13 15:29:19] Cập nhật số lượng sản phẩm 'CẶC DŨNG LÒ VOI' (ID: 6) thành 2
+[2025-05-13 15:29:19] Hoàn thành đồng bộ phiếu nhập hàng ID: 5 vào 5/13/2025 3:29:19 PM
+[2025-05-13 15:29:19] Hoàn thành giao dịch tạo phiếu nhập hàng ID: 5
+[2025-05-13 15:29:19] Hoàn thành tạo phiếu nhập hàng và đồng bộ sản phẩm

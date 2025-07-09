@@ -1,0 +1,715 @@
+﻿@model IEnumerable<DoAnCoSo.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- Hero Section with Enhanced Design -->
+<div class="hero-section py-5 mb-5 animate__animated animate__fadeIn">
+    <div class="row align-items-center">
+        <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right">
+            <h1 class="display-4 fw-bold mb-3 text-gradient">Hải Sản Tươi Ngon Mỗi Ngày</h1>
+            <p class="lead mb-4">Khám phá bộ sưu tập hải sản cao cấp của chúng tôi, được đánh bắt trực tiếp từ ngư dân địa phương và giao đến tận nhà bạn.</p>
+            
+            <!-- Search form with improved styling -->
+            <form asp-action="Index" method="get" class="d-flex">
+                <div class="input-group mb-3">
+                    <input class="form-control search-box" type="search" name="searchTerm" placeholder="Bạn muốn tìm gì hôm nay?"
+                       value="@ViewBag.SearchTerm" aria-label="Search">
+                    <button class="btn search-btn" type="submit">
+                        <i class="bi bi-search me-1"></i> Tìm Kiếm
+                    </button>
+                </div>
+            </form>
+            
+            <div class="d-flex mt-4">
+                <div class="d-flex align-items-center me-4">
+                    <div class="feature-icon-container me-2">
+                        <i class="bi bi-truck text-primary"></i>
+                    </div>
+                    <span>Giao hàng nhanh</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="feature-icon-container me-2">
+                        <i class="bi bi-shield-check text-primary"></i>
+                    </div>
+                    <span>Đảm bảo chất lượng</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Category dropdown with image -->
+        <div class="col-lg-5 text-center text-lg-end" data-aos="fade-left">
+            <div class="position-relative">
+                <img src="https://theme.hstatic.net/1000182631/1000966139/14/a_top_1.jpg?v=1669" class="img-fluid rounded-4 shadow hero-image" alt="Fresh Seafood">
+                <div class="category-dropdown position-absolute bottom-0 end-0 mb-4 me-4">
+                    <button class="btn dropdown-toggle pulse-animation" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-grid me-2"></i> Duyệt Danh Mục
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="categoryDropdown" style="border-radius: 15px;">
+                        @if (ViewBag.DanhMucs != null && ViewBag.DanhMucs.Count > 0)
+                        {
+                            foreach (var category in ViewBag.DanhMucs)
+                            {
+                                <li><a class="dropdown-item py-2" href="/SanPham/SanPhamTheoDanhMuc/@category.MaDanhMuc"><i class="bi bi-tag-fill me-2 text-secondary"></i>@category.TenDanhMuc</a></li>
+                            }
+                        }
+                        else
+                        {
+                            <li><span class="dropdown-item text-muted">Không có danh mục.</span></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modern Carousel with Enhanced Design -->
+<div id="mainCarousel" class="carousel slide modern-carousel" data-bs-ride="carousel" data-aos="fade-up">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://theme.hstatic.net/1000182631/1000966139/14/a_top_1.jpg?v=1669" class="d-block w-100" alt="Promotion 1">
+            <div class="carousel-caption">
+                <h3 class="fw-bold">Bộ Sưu Tập Hải Sản Tươi</h3>
+                <p>Khám phá các loại hải sản tươi ngon cao cấp</p>
+                <a href="/SanPham" class="btn btn-light">Mua Ngay</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://theme.hstatic.net/1000182631/1000966139/14/a_top_2.jpg?v=1669" class="d-block w-100" alt="Promotion 2">
+            <div class="carousel-caption">
+                <h3 class="fw-bold">Khuyến Mãi Đặc Biệt</h3>
+                <p>Giảm giá lớn cho các loại hải sản được chọn</p>
+                <a href="/SanPham" class="btn btn-light">Xem Ưu Đãi</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://seafood-prod-f.squarecdn.com/s3/cms/assets/v1/images/a-fishing-port-with-fishing-boats-at-the-dock-2023-04-11-04-46-16-utc-1-59c4d0-scaled.jpg" class="d-block w-100" alt="Promotion 3">
+            <div class="carousel-caption">
+                <h3 class="fw-bold">Chất Lượng Hàng Đầu</h3>
+                <p>Chỉ những hải sản tốt nhất cho bữa ăn của bạn</p>
+                <a href="/SanPham" class="btn btn-light">Khám Phá Ngay</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Benefits Section with Enhanced Design -->
+<div class="row mt-5 mb-5">
+    <div class="col-12 mb-4" data-aos="fade-up">
+        <h2 class="section-title text-center">Tại Sao Chọn Chúng Tôi</h2>
+    </div>
+    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+            <div class="feature-icon mx-auto mb-4">
+                <i class="bi bi-shield-check text-primary"></i>
+            </div>
+            <h4 class="mb-3">Chất Lượng Cao Cấp</h4>
+            <p class="text-muted">Chúng tôi cung cấp hải sản tươi ngon trực tiếp từ các nguồn uy tín và đáng tin cậy.</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+            <div class="feature-icon mx-auto mb-4">
+                <i class="bi bi-truck text-primary"></i>
+            </div>
+            <h4 class="mb-3">Giao Hàng Nhanh</h4>
+            <p class="text-muted">Chúng tôi đảm bảo hải sản đến tay bạn tươi ngon với dịch vụ giao hàng nhanh chóng.</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+            <div class="feature-icon mx-auto mb-4">
+                <i class="bi bi-credit-card text-primary"></i>
+            </div>
+            <h4 class="mb-3">Thanh Toán An Toàn</h4>
+            <p class="text-muted">Nhiều phương thức thanh toán với bảo mật cao cho sự an tâm của bạn.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Category highlights with Enhanced Design -->
+<div class="row mt-5 mb-4" data-aos="fade-up">
+    <div class="col-12">
+        <h2 class="section-title">Mua Sắm Theo Danh Mục</h2>
+    </div>
+</div>
+
+<div class="row g-4 mb-5">
+    @if (ViewBag.DanhMucs != null && ViewBag.DanhMucs.Count > 0)
+    {
+        int count = 0;
+        foreach (var category in ViewBag.DanhMucs)
+        {
+            if (count >= 3) break; // Display max 3 categories
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="@(count * 100)">
+                <div class="category-card h-100">
+                    <div class="card-body text-center py-5">
+                        <i class="bi bi-water category-icon mb-3"></i>
+                        <h3 class="card-title">@category.TenDanhMuc</h3>
+                        <a href="/SanPham/SanPhamTheoDanhMuc/@category.MaDanhMuc" class="btn btn-outline-primary mt-3">Xem Sản Phẩm</a>
+                    </div>
+                </div>
+            </div>
+            count++;
+        }
+    }
+</div>
+
+<!-- Featured Products Section with Enhanced Design -->
+<div class="row mt-5" data-aos="fade-up">
+    <div class="col-12">
+        <h2 class="section-title text-center mb-4">Sản Phẩm Nổi Bật</h2>
+    </div>
+</div>
+
+@if (Model.Any())
+{
+    <div class="row g-4 mb-5">
+        @{
+            int productCount = 0;
+            int delay = 0;
+            foreach (var item in Model)
+            {
+                if (productCount >= 6) break; // Display max 6 products
+                <div class="col-12 col-sm-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="@delay">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <div class="card-img-container position-relative" style="height: 250px; overflow: hidden;">
+                            <a asp-controller="SanPham" asp-action="Display" asp-route-id="@item.MaSanPham">
+                                <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-product.jpg" : item.ImageUrl)"
+                                    class="card-img-top h-100 w-100"
+                                    style="object-fit: cover; transition: transform .5s ease;"
+                                    alt="@item.TenSanPham" />
+                            </a>
+                            <div class="position-absolute top-0 end-0 m-2">
+                                @{
+                                    bool hasUnconfirmedImport = false;
+                                    if (item.ChiTietPhieuNhaps != null)
+                                    {
+                                        foreach (var chiTiet in item.ChiTietPhieuNhaps)
+                                        {
+                                            if (!chiTiet.PhieuNhapHang.DaXacNhan)
+                                            {
+                                                hasUnconfirmedImport = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    
+                                    if (hasUnconfirmedImport || item.SoLuong <= 0)
+                                    {
+                                        <span class="badge bg-danger stock-badge">HẾT HÀNG</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success stock-badge">CÒN HÀNG</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title mb-2">@item.TenSanPham</h5>
+                            <p class="card-text text-primary fw-bold mb-3">@item.GiaTheoKG.ToString("N0") VNĐ/kg</p>
+                            <div class="mt-auto">
+                                <div class="d-grid gap-2">
+                                    <a asp-controller="SanPham" asp-action="Display" asp-route-id="@item.MaSanPham" 
+                                       class="btn btn-outline-primary">Chi tiết</a>
+                                    @if (!hasUnconfirmedImport && item.SoLuong > 0)
+                                    {
+                                        <a asp-controller="ShoppingCart" asp-action="AddToCart" 
+                                           asp-route-maSanPham="@item.MaSanPham" 
+                                           asp-route-tenSanPham="@item.TenSanPham" 
+                                           asp-route-giaTheoKG="@item.GiaTheoKG" 
+                                           asp-route-imageUrl="@item.ImageUrl" 
+                                           class="btn btn-dark add-to-cart-btn">
+                                            <i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-dark" disabled>
+                                            <i class="bi bi-cart-plus me-1"></i> Hết hàng
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                productCount++;
+                delay += 100;
+            }
+        }
+    </div>
+    
+    <div class="text-center mb-5" data-aos="fade-up">
+        <a asp-controller="SanPham" asp-action="Index" class="btn btn-primary px-5 py-2">
+            Xem Tất Cả Sản Phẩm <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+    </div>
+}
+else
+{
+    <div class="alert alert-info text-center py-5 shadow-sm animate__animated animate__fadeIn">
+        <i class="bi bi-exclamation-circle fs-1 d-block mb-3 text-primary"></i>
+        <h4>Không tìm thấy sản phẩm</h4>
+        <p class="mb-0">Chúng tôi không thể tìm thấy sản phẩm nào phù hợp với tiêu chí của bạn.</p>
+    </div>
+}
+
+<!-- Testimonials Section with Enhanced Design -->
+<div class="row mt-5 mb-5">
+    <div class="col-12 mb-4" data-aos="fade-up">
+        <h2 class="section-title text-center">Khách Hàng Nói Gì</h2>
+    </div>
+    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonial-card border-0 shadow-sm h-100 p-4">
+            <div class="d-flex mb-3">
+                <div class="text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+            </div>
+            <p class="mb-3">"Hải sản tôi đặt cực kỳ tươi ngon và được đóng gói cẩn thận. Chắc chắn sẽ đặt lại!"</p>
+            <div class="d-flex align-items-center">
+                <div class="testimonial-avatar me-3">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" class="rounded-circle" width="48" height="48" alt="Avatar">
+                </div>
+                <div>
+                    <h6 class="mb-0">Minh Tuấn</h6>
+                    <small class="text-muted">Khách hàng thân thiết</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimonial-card border-0 shadow-sm h-100 p-4">
+            <div class="d-flex mb-3">
+                <div class="text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </div>
+            </div>
+            <p class="mb-3">"Cửa hàng hải sản trực tuyến tốt nhất tôi từng tìm thấy. Tôm của họ tuyệt vời và giao hàng luôn đúng hẹn."</p>
+            <div class="d-flex align-items-center">
+                <div class="testimonial-avatar me-3">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" class="rounded-circle" width="48" height="48" alt="Avatar">
+                </div>
+                <div>
+                    <h6 class="mb-0">Thu Hà</h6>
+                    <small class="text-muted">Khách hàng thường xuyên</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="testimonial-card border-0 shadow-sm h-100 p-4">
+            <div class="d-flex mb-3">
+                <div class="text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                </div>
+            </div>
+            <p class="mb-3">"Lựa chọn cá tươi rất đa dạng. Gia đình tôi rất thích cá ngừ cao cấp mà chúng tôi đã đặt tuần trước."</p>
+            <div class="d-flex align-items-center">
+                <div class="testimonial-avatar me-3">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle" width="48" height="48" alt="Avatar">
+                </div>
+                <div>
+                    <h6 class="mb-0">Quang Dũng</h6>
+                    <small class="text-muted">Khách hàng mới</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Newsletter Section with Enhanced Design -->
+<div class="row mb-5" data-aos="fade-up">
+    <div class="col-12">
+        <div class="newsletter-card border-0 shadow-sm p-4 p-md-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h3 class="mb-3">Đăng ký nhận ưu đãi đặc biệt</h3>
+                    <p class="text-muted mb-0">Đăng ký nhận bản tin của chúng tôi để được cập nhật các ưu đãi độc quyền và khuyến mãi mới nhất.</p>
+                </div>
+                <div class="col-lg-6">
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Email của bạn">
+                        <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Hero section enhancement */
+    .hero-section {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-image {
+        transition: transform 0.5s ease;
+    }
+
+    .text-gradient {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Features section enhancement */
+    .feature-icon-container {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(26, 115, 232, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: rgba(26, 115, 232, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+    }
+    
+    /* Category cards enhancement */
+    .category-card {
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s ease;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 25px rgba(26, 115, 232, 0.2);
+    }
+    
+    .category-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 15px 35px rgba(26, 115, 232, 0.3);
+    }
+    
+    .category-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Testimonial cards enhancement */
+    .testimonial-card {
+        border-radius: 16px;
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .testimonial-avatar img {
+        border: 3px solid #fff;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Newsletter section enhancement */
+    .newsletter-card {
+        border-radius: 20px;
+        background: linear-gradient(135deg, #f8f9fa, #ffffff);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .newsletter-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    /* Add to cart button enhancement */
+    .add-to-cart-btn {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .add-to-cart-btn::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+    
+    .add-to-cart-btn:hover::after {
+        height: 100%;
+    }
+    
+    /* Pulse animation for category dropdown button */
+    .pulse-animation {
+        animation: pulse 2s infinite;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+    }
+    
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    }
+</style>
+
+<style>
+    /* Đặt keyframes trong thẻ style riêng */
+    @@keyframes typingBounce {
+        0%, 60%, 100% {
+            transform: translateY(0);
+        }
+        30% {
+            transform: translateY(-5px);
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Ensure proper initialization of Bootstrap components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+            
+            // Chatbot functionality
+            const chatButton = document.getElementById('chatButton');
+            const chatPopup = document.getElementById('chatPopup');
+            const chatCloseBtn = document.getElementById('chatCloseBtn');
+            const chatForm = document.getElementById('chatForm');
+            const chatInput = document.getElementById('chatInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const clearChatBtn = document.getElementById('clearChatBtn');
+            
+            // Toggle chat popup
+            chatButton.addEventListener('click', function() {
+                chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+                if (chatPopup.style.display === 'block') {
+                    // Tải lịch sử chat khi mở popup
+                    loadChatHistory();
+                    chatInput.focus();
+                }
+            });
+            
+            // Close chat popup
+            chatCloseBtn.addEventListener('click', function() {
+                chatPopup.style.display = 'none';
+            });
+            
+            // Xóa lịch sử chat
+            clearChatBtn.addEventListener('click', function() {
+                fetch('/api/gemini/clear', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Xóa tất cả tin nhắn từ giao diện
+                        chatMessages.innerHTML = '';
+                        // Thêm tin nhắn chào mừng ban đầu
+                        addMessage('Xin chào! Tôi là Gemini AI. Tôi có thể giúp gì cho bạn?', 'bot');
+                        addMessage('Bạn có thể hỏi tôi về sản phẩm, danh mục, đơn hàng hoặc bất kỳ thông tin nào về hệ thống.', 'bot');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+            
+            // Handle chat form submission
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const message = chatInput.value.trim();
+                if (!message) return;
+                
+                // Add user message to chat
+                addMessage(message, 'user');
+                chatInput.value = '';
+                
+                // Hiển thị trạng thái "đang nhập..."
+                const typingIndicator = document.createElement('div');
+                typingIndicator.classList.add('chat-message', 'bot', 'typing-indicator');
+                const typingContent = document.createElement('div');
+                typingContent.classList.add('chat-message-content');
+                typingContent.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+                typingIndicator.appendChild(typingContent);
+                chatMessages.appendChild(typingIndicator);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Send message to server
+                fetch('/api/gemini/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Xóa trạng thái "đang nhập..."
+                    const typingIndicators = document.querySelectorAll('.typing-indicator');
+                    typingIndicators.forEach(indicator => indicator.remove());
+                    
+                    // Add bot response
+                    addMessage(data.response, 'bot');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    
+                    // Xóa trạng thái "đang nhập..."
+                    const typingIndicators = document.querySelectorAll('.typing-indicator');
+                    typingIndicators.forEach(indicator => indicator.remove());
+                    
+                    addMessage('Xin lỗi, có lỗi xảy ra. Vui lòng thử lại sau.', 'bot');
+                });
+            });
+            
+            // Function to add message to chat
+            function addMessage(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chat-message', sender);
+                
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('chat-message-content');
+                messageContent.textContent = message;
+                
+                messageElement.appendChild(messageContent);
+                chatMessages.appendChild(messageElement);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to load chat history
+            function loadChatHistory() {
+                fetch('/api/gemini/history')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Xóa tin nhắn hiện tại
+                        chatMessages.innerHTML = '';
+                        
+                        if (data.length > 0) {
+                            // Hiển thị lịch sử chat
+                            data.forEach(message => {
+                                const sender = message.role === 'user' ? 'user' : 'bot';
+                                addMessage(message.content, sender);
+                            });
+                        } else {
+                            // Thêm tin nhắn chào mừng ban đầu nếu không có lịch sử
+                            addMessage('Xin chào! Tôi là Gemini AI. Tôi có thể giúp gì cho bạn?', 'bot');
+                            addMessage('Bạn có thể hỏi tôi về sản phẩm, danh mục, đơn hàng hoặc bất kỳ thông tin nào về hệ thống.', 'bot');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Thêm tin nhắn chào mừng nếu có lỗi
+                        chatMessages.innerHTML = '';
+                        addMessage('Xin chào! Tôi là Gemini AI. Tôi có thể giúp gì cho bạn?', 'bot');
+                        addMessage('Bạn có thể hỏi tôi về sản phẩm, danh mục, đơn hàng hoặc bất kỳ thông tin nào về hệ thống.', 'bot');
+                    });
+            }
+        });
+    </script>
+}
+
+<!-- Chatbot Widget -->
+<div class="chat-widget-container">
+    <div class="chat-widget-button" id="chatButton">
+        <i class="bi bi-chat-dots-fill"></i>
+    </div>
+    <div class="chat-widget-popup" id="chatPopup">
+        <div class="chat-popup-header">
+            <h4><i class="bi bi-robot me-2"></i>Gemini Chatbot</h4>
+            <div class="chat-popup-actions">
+                <button class="chat-action-btn" id="clearChatBtn" title="Xóa lịch sử">
+                    <i class="bi bi-trash"></i>
+                </button>
+                <button class="chat-close-btn" id="chatCloseBtn">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chat-popup-body" id="chatMessages">
+            <!-- Lịch sử chat sẽ được tải từ javascript -->
+        </div>
+        <div class="chat-popup-footer">
+            <form id="chatForm">
+                <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." required>
+                <button type="submit">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

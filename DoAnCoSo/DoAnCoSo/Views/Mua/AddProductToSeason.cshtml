@@ -1,0 +1,30 @@
+﻿@model DoAnCoSo.Models.ChiTietMua
+
+@{
+    ViewData["Title"] = "Thêm Sản Phẩm Vào Mùa";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-success">Thêm Sản Phẩm Vào Mùa</h2>
+    <form asp-action="AddProductToSeason" method="post">
+        <input type="hidden" asp-for="MaMuaID" />
+
+        <div class="mb-3">
+            <label asp-for="MaSanPhamID" class="form-label">Sản Phẩm</label>
+            <select asp-for="MaSanPhamID" class="form-select" asp-items="ViewBag.SanPhams"></select>
+            <span asp-validation-for="MaSanPhamID" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="SoLuongTheoMua" class="form-label">Số Lượng</label>
+            <input asp-for="SoLuongTheoMua" class="form-control" />
+            <span asp-validation-for="SoLuongTheoMua" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Thêm</button>
+        <a asp-action="Index" asp-controller="Mua" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

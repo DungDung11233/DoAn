@@ -1,0 +1,307 @@
+@model IEnumerable<DoAnCoSo.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container mb-5 animate__animated animate__fadeIn">
+    <!-- Page header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-lg-6">
+            <h1 class="section-title mb-0">Products List</h1>
+            <p class="text-muted">Manage and browse all available products</p>
+        </div>
+        <div class="col-lg-6 text-lg-end mt-3 mt-lg-0">
+            <a href="@Url.Action("Add", "SanPham")" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-2"></i>Add New Product
+            </a>
+        </div>
+    </div>
+
+    <!-- Search and filter options -->
+    <div class="card mb-4 border-0 shadow-sm rounded-3">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3">
+                <div class="col-lg-4 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control border-start-0" name="searchTerm" placeholder="Search products..." 
+                               value="@ViewBag.SearchTerm">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <select class="form-select" name="filterStatus">
+                        <option value="">All Status</option>
+                        <option value="Available" selected="@(ViewBag.FilterStatus == "Available")">Available</option>
+                        <option value="Low Stock" selected="@(ViewBag.FilterStatus == "Low Stock")">Low Stock</option>
+                        <option value="Out of Stock" selected="@(ViewBag.FilterStatus == "Out of Stock")">Out of Stock</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-sort-alpha-down"></i></span>
+                        <select class="form-select border-start-0" name="sortOrder">
+                            <option value="name_asc" selected="@(ViewBag.SortOrder == "name_asc")">Name (A-Z)</option>
+                            <option value="name_desc" selected="@(ViewBag.SortOrder == "name_desc")">Name (Z-A)</option>
+                            <option value="price_asc" selected="@(ViewBag.SortOrder == "price_asc")">Price (Low-High)</option>
+                            <option value="price_desc" selected="@(ViewBag.SortOrder == "price_desc")">Price (High-Low)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-funnel-fill me-2"></i>Filter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Products display options (Grid/List) -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <span class="text-muted">Showing @Model.Count() products</span>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary active" id="list-view-btn">
+                <i class="bi bi-list-ul me-1"></i> List
+            </button>
+            <button type="button" class="btn btn-outline-primary" id="grid-view-btn">
+                <i class="bi bi-grid-3x3-gap me-1"></i> Grid
+            </button>
+        </div>
+    </div>
+
+    <!-- Products view - List View -->
+    <div id="list-view">
+        <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">ID</th>
+                            <th>Product Name</th>
+                            <th>Origin</th>
+                            <th>Price</th>
+                            <th>Harvest Date</th>
+                            <th>Storage Type</th>
+                            <th>Status</th>
+                            <th>Quantity</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">@item.MaSanPham</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="product-img-wrapper me-3">
+                                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-product.jpg" : item.ImageUrl)" 
+                                                 class="rounded" alt="@item.TenSanPham" 
+                                                 style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #f8f9fa;">
+                                        </div>
+                                        <div>
+                                            <span class="fw-medium d-block">@item.TenSanPham</span>
+                                            <small class="text-muted">@(item.LoaiSanPham?.TenLoai ?? "N/A")</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>@item.NguonGoc</td>
+                                <td class="fw-medium text-primary">@item.GiaTheoKG.ToString("N0") VNĐ</td>
+                                <td>@item.NgayThuHoach.ToString("dd/MM/yyyy")</td>
+                                <td>@item.LoaiBaoQuan</td>
+                                <td>
+                                    @{
+                                        bool hasUnconfirmedImport = false;
+                                        if (item.ChiTietPhieuNhaps != null)
+                                        {
+                                            foreach (var chiTiet in item.ChiTietPhieuNhaps)
+                                            {
+                                                if (!chiTiet.PhieuNhapHang.DaXacNhan)
+                                                {
+                                                    hasUnconfirmedImport = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        
+                                        if (hasUnconfirmedImport || item.SoLuong <= 0)
+                                        {
+                                            <span class="badge bg-danger">OUT OF STOCK</span>
+                                        }
+                                        else if (item.SoLuong < 10)
+                                        {
+                                            <span class="badge bg-warning text-dark">LOW STOCK</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">IN STOCK</span>
+                                        }
+                                    }
+                                </td>
+                                <td class="fw-medium">@item.SoLuong </td>
+                                <td class="text-end pe-4">
+                                    <div class="btn-group">
+                                        <a href="@Url.Action("Display", "SanPham", new { id = item.MaSanPham })" 
+                                           class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="@Url.Action("Update", "SanPham", new { id = item.MaSanPham })" 
+                                           class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="@Url.Action("Delete", "SanPham", new { id = item.MaSanPham })" 
+                                           class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Products view - Grid View (Hidden by default) -->
+    <div id="grid-view" class="d-none">
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <div class="position-relative">
+                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-product.jpg" : item.ImageUrl)" 
+                                 class="card-img-top" alt="@item.TenSanPham" 
+                                 style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-2">
+                                @{
+                                    bool gridHasUnconfirmedImport = false;
+                                    if (item.ChiTietPhieuNhaps != null)
+                                    {
+                                        foreach (var chiTiet in item.ChiTietPhieuNhaps)
+                                        {
+                                            if (!chiTiet.PhieuNhapHang.DaXacNhan)
+                                            {
+                                                gridHasUnconfirmedImport = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    
+                                    if (gridHasUnconfirmedImport || item.SoLuong <= 0)
+                                    {
+                                        <span class="badge bg-danger stock-badge">OUT OF STOCK</span>
+                                    }
+                                    else if (item.SoLuong < 10)
+                                    {
+                                        <span class="badge bg-warning text-dark stock-badge">LOW STOCK</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success stock-badge">IN STOCK</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">@item.TenSanPham</h5>
+                            <p class="text-muted small mb-2">@(item.LoaiSanPham?.TenLoai ?? "N/A") • @item.NguonGoc</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fw-bold text-primary">@item.GiaTheoKG.ToString("N0") VNĐ</span>
+                                <span class="badge bg-light text-secondary">@item.SoLuong </span>
+                            </div>
+                            <div class="btn-group d-flex">
+                                <a href="@Url.Action("Display", "SanPham", new { id = item.MaSanPham })" 
+                                   class="btn btn-sm btn-outline-primary flex-fill">
+                                    <i class="bi bi-eye me-1"></i> View
+                                </a>
+                                <a href="@Url.Action("Update", "SanPham", new { id = item.MaSanPham })" 
+                                   class="btn btn-sm btn-outline-secondary flex-fill">
+                                    <i class="bi bi-pencil me-1"></i> Edit
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
+    <!-- Pagination if needed -->
+    @if(Model.Count() > 0)
+    {
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchTerm = ViewBag.SearchTerm, filterStatus = ViewBag.FilterStatus, sortOrder = ViewBag.SortOrder })" tabindex="-1">Previous</a>
+                </li>
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = i, searchTerm = ViewBag.SearchTerm, filterStatus = ViewBag.FilterStatus, sortOrder = ViewBag.SortOrder })">@i</a>
+                    </li>
+                }
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchTerm = ViewBag.SearchTerm, filterStatus = ViewBag.FilterStatus, sortOrder = ViewBag.SortOrder })">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+    else
+    {
+        <div class="text-center py-5 my-5">
+            <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+            <h3 class="mt-3">No Products Found</h3>
+            <p class="text-muted">Try adjusting your search or filter to find what you're looking for.</p>
+            <a href="@Url.Action("Index")" class="btn btn-outline-primary mt-3">Clear Filters</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // View switcher (list/grid)
+        document.addEventListener('DOMContentLoaded', function() {
+            const listViewBtn = document.getElementById('list-view-btn');
+            const gridViewBtn = document.getElementById('grid-view-btn');
+            const listView = document.getElementById('list-view');
+            const gridView = document.getElementById('grid-view');
+            
+            listViewBtn.addEventListener('click', function() {
+                listView.classList.remove('d-none');
+                gridView.classList.add('d-none');
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+                
+                // Save preference to localStorage
+                localStorage.setItem('productViewPreference', 'list');
+            });
+            
+            gridViewBtn.addEventListener('click', function() {
+                gridView.classList.remove('d-none');
+                listView.classList.add('d-none');
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+                
+                // Save preference to localStorage
+                localStorage.setItem('productViewPreference', 'grid');
+            });
+            
+            // Load saved preference
+            const savedPreference = localStorage.getItem('productViewPreference');
+            if (savedPreference === 'grid') {
+                gridViewBtn.click();
+            }
+        });
+    </script>
+}

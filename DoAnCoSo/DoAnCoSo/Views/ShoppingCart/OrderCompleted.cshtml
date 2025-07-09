@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Đặt Hàng Thành Công";
+}
+
+<!-- Font Awesome cho các biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="container my-5 text-center">
+    <div class="card shadow-sm rounded mx-auto" style="max-width: 600px;">
+        <div class="card-body py-5">
+            <i class="fas fa-check-circle fa-5x text-success mb-4"></i>
+            <h2 class="text-success mb-4 fw-bold">Đặt Hàng Thành Công</h2>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <p class="fs-5 text-muted mb-4">Cảm ơn bạn đã đặt hàng! Đơn hàng của bạn đã được ghi nhận.</p>
+
+            <!-- Nút xem và tải hóa đơn -->
+            @if (TempData["MaHoaDon"] != null)
+            {
+                <div class="mb-4">
+                    <a href="@Url.Action("ViewInvoice", "ShoppingCart", new { maHoaDon = TempData["MaHoaDon"] })" class="btn btn-primary rounded-pill px-4 me-2">
+                        <i class="fas fa-eye me-2"></i>Xem Hóa Đơn
+                    </a>
+                    @* <a href="@Url.Action("DownloadInvoice", "ShoppingCart", new { maHoaDon = TempData["MaHoaDon"] })" class="btn btn-success rounded-pill px-4"> *@
+                    @*     <i class="fas fa-download me-2"></i>Tải Hóa Đơn (PDF) *@
+                    @* </a> *@
+                </div>
+            }
+
+            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary rounded-pill px-5">
+                <i class="fas fa-arrow-left me-2"></i>Trở về Trang Chủ
+            </a>
+        </div>
+    </div>
+</div>

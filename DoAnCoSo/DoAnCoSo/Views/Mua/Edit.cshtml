@@ -1,0 +1,33 @@
+﻿@model DoAnCoSo.Models.Mua
+
+@{
+    ViewData["Title"] = "Sửa Mùa";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Sửa Mùa</h2>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="MaMua" />
+        <div class="mb-3">
+            <label asp-for="TenMua" class="form-label">Tên Mùa</label>
+            <input asp-for="TenMua" class="form-control" />
+            <span asp-validation-for="TenMua" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ThoiGianVaoMua" class="form-label">Thời Gian Vào Mùa</label>
+            <input asp-for="ThoiGianVaoMua" class="form-control" type="date" />
+            <span asp-validation-for="ThoiGianVaoMua" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ThoiGianHetMua" class="form-label">Thời Gian Hết Mùa</label>
+            <input asp-for="ThoiGianHetMua" class="form-control" type="date" />
+            <span asp-validation-for="ThoiGianHetMua" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

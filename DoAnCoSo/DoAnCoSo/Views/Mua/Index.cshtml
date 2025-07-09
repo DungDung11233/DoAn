@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DoAnCoSo.Models.Mua>
+
+@{
+    ViewData["Title"] = "Danh sách Mùa";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Danh sách Mùa</h2>
+    <a asp-action="Create" class="btn btn-success mb-3">Thêm Mùa</a>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã Mùa</th>
+                <th>Tên Mùa</th>
+                <th>Thời Gian Vào Mùa</th>
+                <th>Thời Gian Hết Mùa</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mua in Model)
+            {
+                <tr>
+                    <td>@mua.MaMua</td>
+                    <td>@mua.TenMua</td>
+                    <td>@mua.ThoiGianVaoMua.ToString("dd/MM/yyyy")</td>
+                    <td>@mua.ThoiGianHetMua.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@mua.MaMua" class="btn btn-primary btn-sm">Chi Tiết</a>
+                        <a asp-action="Edit" asp-route-id="@mua.MaMua" class="btn btn-warning btn-sm">Sửa</a>
+                        <form asp-action="Delete" asp-route-id="@mua.MaMua" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa mùa này?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

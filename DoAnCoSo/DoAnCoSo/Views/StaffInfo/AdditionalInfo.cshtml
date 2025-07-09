@@ -1,0 +1,60 @@
+@model DoAnCoSo.Models.StaffAdditionalInfo
+
+@{
+    ViewData["Title"] = "Thông tin nhân viên";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Thông tin nhân viên</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="AdditionalInfo" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="TenNhanVien" class="control-label"></label>
+                            <input asp-for="TenNhanVien" class="form-control" />
+                            <span asp-validation-for="TenNhanVien" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="SoDienThoai" class="control-label"></label>
+                            <input asp-for="SoDienThoai" class="form-control" />
+                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="NgayTuyenDung" class="control-label"></label>
+                            <input asp-for="NgayTuyenDung" class="form-control" type="date" />
+                            <span asp-validation-for="NgayTuyenDung" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="DiaChi" class="control-label"></label>
+                            <input asp-for="DiaChi" class="form-control" />
+                            <span asp-validation-for="DiaChi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" type="email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Hoàn tất</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

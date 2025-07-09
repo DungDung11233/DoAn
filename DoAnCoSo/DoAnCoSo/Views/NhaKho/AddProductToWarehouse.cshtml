@@ -1,0 +1,40 @@
+﻿@model DoAnCoSo.Models.ChiTietKhoHang
+
+@{
+    ViewData["Title"] = "Thêm Sản Phẩm Vào Kho";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Thêm Sản Phẩm Vào Kho</h2>
+    <form asp-action="AddProductToWarehouse" method="post">
+        <input type="hidden" asp-for="MaNhaKhoID" />
+        <div class="mb-3">
+            <label asp-for="MaSanPhamID" class="form-label">Sản Phẩm</label>
+            <select asp-for="MaSanPhamID" class="form-select" asp-items="ViewBag.SanPhams" onchange="updateQuantity(this.value)"></select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Số Lượng Sản Phẩm</label>
+            <input type="text" id="currentQuantity" class="form-control" readonly />
+        </div>
+        <div class="mb-3">
+            <label asp-for="NgayNhap" class="form-label">Ngày Nhập</label>
+            <input asp-for="NgayNhap" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+        <input type="hidden" asp-for="SoLuong" id="hiddenQuantity" />
+        <button type="submit" class="btn btn-success">Thêm Vào Kho</button>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        async function updateQuantity(productId) {
+            if (productId) {
+                const response = await fetch(`/SanPham/GetQuantity/${productId}`);
+                const quantity = await response.json();
+                document.getElementById('currentQuantity').value = quantity;
+                document.getElementById('hiddenQuantity').value = quantity;
+            }
+        }
+    </script>
+}

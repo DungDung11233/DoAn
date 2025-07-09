@@ -1,0 +1,908 @@
+﻿@model DoAnCoSo.Models.SanPham
+
+@{
+    ViewData["Title"] = Model.TenSanPham;
+}
+
+@section Styles {
+    <style>
+        .star-rating {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+        .review-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .review-card {
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .rating-group {
+            display: inline-flex;
+            flex-direction: row-reverse;
+            position: relative;
+        }
+        .rating-input {
+            display: none;
+        }
+        .rating-label {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ddd;
+            transition: all 0.2s ease;
+        }
+        .rating-label:hover,
+        .rating-label:hover ~ .rating-label {
+            color: #ffc107;
+        }
+        .rating-input:checked ~ .rating-label {
+            color: #ffc107;
+        }
+        .rating-group:not(:hover) .rating-input:checked ~ .rating-label {
+            color: #ffc107;
+        }
+        .rating-description {
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+
+        /* New styles for enhanced image display */
+        .main-image-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            cursor: zoom-in;
+            background: #f8f9fa;
+        }
+
+        .main-image:hover {
+            transform: scale(1.5);
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .thumbnail-wrapper.active {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.25);
+        }
+
+        .thumbnail-wrapper:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.4s ease;
+        }
+
+        .thumbnail-wrapper:hover .thumbnail {
+            transform: scale(1.15);
+        }
+
+        .image-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-nav-button:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .prev-image {
+            left: 15px;
+        }
+
+        .next-image {
+            right: 15px;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+        
+        .product-info-card {
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+            padding: 2rem;
+            height: 100%;
+        }
+        
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .product-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            color: var(--dark);
+        }
+        
+        .product-description {
+            color: #6c757d;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .product-meta {
+            padding: 1rem 0;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .product-meta-label {
+            min-width: 120px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .product-meta-value {
+            color: #6c757d;
+        }
+        
+        .quantity-input {
+            max-width: 120px;
+            text-align: center;
+            font-weight: 600;
+            padding: 0.75rem 0.5rem;
+            border-radius: 8px;
+        }
+        
+        .section-heading {
+            position: relative;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            border-radius: 10px;
+        }
+        
+        .info-tabs .nav-link {
+            color: var(--gray-700);
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .info-tabs .nav-link.active {
+            color: var(--primary);
+            background-color: #fff;
+            border-bottom-color: #fff;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-content {
+            background-color: #fff;
+            border-radius: 0 0 8px 8px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 992px) {
+            .thumbnail-gallery {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-price {
+                font-size: 1.75rem;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .thumbnail-gallery {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .main-image-container {
+                height: 400px;
+            }
+            
+            .product-info-card {
+                margin-top: 2rem;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .thumbnail-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .main-image-container {
+                height: 350px;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+            
+            .product-price {
+                font-size: 1.5rem;
+            }
+            
+            .quantity-input {
+                max-width: 100px;
+            }
+        }
+    </style>
+}
+
+<div class="container mb-5">
+    <!-- Breadcrumb navigation -->
+    <nav aria-label="breadcrumb" class="mb-4 animate__animated animate__fadeIn">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="SanPham" asp-action="Index">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.TenSanPham</li>
+        </ol>
+    </nav>
+
+    <div class="row gx-5 animate__animated animate__fadeIn">
+        <!-- Product Images -->
+        <div class="col-lg-6">
+            <div class="main-image-container">
+                <img id="mainImage" class="main-image" src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "/images/default-product.jpg" : Model.ImageUrl)" alt="@Model.TenSanPham" />
+                <button class="image-nav-button prev-image" id="prevImageBtn">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="image-nav-button next-image" id="nextImageBtn">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="thumbnail-gallery" id="thumbnailGallery">
+                <div class="thumbnail-wrapper active" data-image="@(string.IsNullOrEmpty(Model.ImageUrl) ? "/images/default-product.jpg" : Model.ImageUrl)">
+                    <img class="thumbnail" src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "/images/default-product.jpg" : Model.ImageUrl)" alt="@Model.TenSanPham" />
+                </div>
+                @if (Model.HinhAnhSanPhams != null && Model.HinhAnhSanPhams.Count > 0)
+                {
+                    foreach (var hinhAnh in Model.HinhAnhSanPhams)
+                    {
+                        <div class="thumbnail-wrapper" data-image="@hinhAnh.LoaiHinhAnh">
+                            <img class="thumbnail" src="@hinhAnh.LoaiHinhAnh" alt="@Model.TenSanPham" />
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Product Information -->
+        <div class="col-lg-6">
+            <div class="product-info-card">
+                <h1 class="product-title">@Model.TenSanPham</h1>
+                <div class="product-price">@Model.GiaTheoKG.ToString("N0") VNĐ/kg</div>
+                
+                <p class="product-description">@Model.MoTa</p>
+                
+                <div class="product-meta">
+                    <div class="product-meta-item">
+                        <span class="product-meta-label"><i class="bi bi-tag-fill me-2 text-primary"></i>Category:</span>
+                        <span class="product-meta-value">
+                            @(Model.LoaiSanPham?.TenLoai ?? "N/A") - 
+                            @(Model.DanhMuc?.TenDanhMuc ?? "N/A")
+                        </span>
+                    </div>
+                    <div class="product-meta-item">
+                        <span class="product-meta-label"><i class="bi bi-box-fill me-2 text-primary"></i>In Stock:</span>
+                        <span class="product-meta-value">
+                            @{
+                                bool hasUnconfirmedImport = false;
+                                if (Model.ChiTietPhieuNhaps != null)
+                                {
+                                    foreach (var chiTiet in Model.ChiTietPhieuNhaps)
+                                    {
+                                        if (!chiTiet.PhieuNhapHang.DaXacNhan)
+                                        {
+                                            hasUnconfirmedImport = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                
+                                if (hasUnconfirmedImport || Model.SoLuong <= 0)
+                                {
+                                    <span class="badge bg-danger">OUT OF STOCK</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">IN STOCK (@Model.SoLuong items available)</span>
+                                }
+                            }
+                        </span>
+                    </div>
+                </div>
+                
+                <form asp-controller="ShoppingCart" asp-action="AddToCart" method="get" class="mb-4">
+                    <input type="hidden" name="maSanPham" value="@Model.MaSanPham" />
+                    <input type="hidden" name="tenSanPham" value="@Model.TenSanPham" />
+                    <input type="hidden" name="giaTheoKG" value="@Model.GiaTheoKG" />
+                    <input type="hidden" name="imageUrl" value="@Model.ImageUrl" />
+                    
+                    <div class="mb-4">
+                        <label for="soLuong" class="form-label fw-bold mb-2">Quantity (items):</label>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-outline-secondary" onclick="decrementQuantity()">
+                                <i class="bi bi-dash"></i>
+                            </button>
+                            <input type="number" id="soLuong" name="soLuong" value="1" min="1" max="@Model.SoLuong" class="form-control quantity-input mx-2">
+                            <button type="button" class="btn btn-outline-secondary" onclick="incrementQuantity()">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        @if (!hasUnconfirmedImport && Model.SoLuong > 0)
+                        {
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-cart-plus me-2"></i> Add to Cart
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                <i class="bi bi-exclamation-circle me-2"></i> Out of Stock
+                            </button>
+                        }
+                    </div>
+                </form>
+                
+                <div class="d-flex align-items-center mt-3">
+                    <button type="button" class="btn btn-outline-primary me-2">
+                        <i class="bi bi-heart me-1"></i> Add to Wishlist
+                    </button>
+                    <button type="button" class="btn btn-outline-primary">
+                        <i class="bi bi-share me-1"></i> Share
+                    </button>
+                    
+                    @if (User.IsInRole("Admin") || User.IsInRole("Nhà cung cấp"))
+                    {
+                        <a asp-action="ManageHinhAnh" asp-route-maSanPham="@Model.MaSanPham" class="btn btn-outline-success ms-2">
+                            <i class="bi bi-images me-1"></i> Quản lý hình ảnh phụ
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Tabs -->
+    <div class="row mt-5 animate__animated animate__fadeIn">
+        <div class="col-12">
+            <ul class="nav nav-tabs info-tabs mb-0" id="productInfoTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">Product Details</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false">Shipping</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="productInfoTabContent">
+                <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="mb-3">Description</h3>
+                            <p>@Model.MoTa</p>
+                            
+                            <h3 class="mb-3 mt-4">Product Specifications</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Weight Per Unit:</span>
+                                    <span class="fw-bold">1 kg</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Storage:</span>
+                                    <span class="fw-bold">Refrigerated</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Origin:</span>
+                                    <span class="fw-bold">Local</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Category:</span>
+                                    <span class="fw-bold">@(Model.LoaiSanPham?.TenLoai ?? "N/A")</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Price Per Unit:</span>
+                                    <span class="fw-bold">@Model.GiaTheoKG.ToString("N0") VNĐ</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="mb-3">Nutrition Facts</h3>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Per 100g serving</h5>
+                                    <table class="table table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>Calories</td>
+                                                <td class="text-end fw-bold">116 kcal</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Protein</td>
+                                                <td class="text-end fw-bold">19.8g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fat</td>
+                                                <td class="text-end fw-bold">3.8g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Carbohydrates</td>
+                                                <td class="text-end fw-bold">0g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sodium</td>
+                                                <td class="text-end fw-bold">65mg</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="card-text small text-muted">Values may vary based on the specific product and preparation method.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    @if (Model.DanhGias != null && Model.DanhGias.Count > 0)
+                    {
+                        <h3 class="mb-4">Customer Reviews</h3>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                @foreach (var review in Model.DanhGias)
+                                {
+                                    <div class="review-card">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="mb-0">@(review.KhachHang?.TenKhachHang ?? "Anonymous")</h5>
+                                            <div class="star-rating">
+                                                @for (int i = 0; i < review.XepHang; i++)
+                                                {
+                                                    <i class="bi bi-star-fill"></i>
+                                                }
+                                                @for (int i = review.XepHang; i < 5; i++)
+                                                {
+                                                    <i class="bi bi-star text-muted"></i>
+                                                }
+                                            </div>
+                                        </div>
+                                        <p class="review-date mb-2">@review.NgayDanhGia.ToString("MMMM dd, yyyy")</p>
+                                        <p class="mb-0">@review.BinhLuan</p>
+                                    </div>
+                                }
+                            </div>
+                            
+                            <div class="col-lg-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-3">Write a Review</h5>
+                                        <form asp-controller="SanPham" asp-action="AddReview" method="post">
+                                            <input type="hidden" name="maSanPham" value="@Model.MaSanPham" />
+                                            
+                                            <div class="mb-3">
+                                                <label class="form-label">Rating</label>
+                                                <div class="rating-group">
+                                                    @for (int i = 5; i >= 1; i--)
+                                                    {
+                                                        <input type="radio" class="rating-input" name="xepHang" id="rating-@i" value="@i" @(i == 5 ? "checked" : "") />
+                                                        <label class="rating-label" for="rating-@i"><i class="bi bi-star-fill"></i></label>
+                                                    }
+                                                </div>
+                                                <div class="rating-description" id="ratingDescription">Excellent</div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="binhLuan" class="form-label">Your Review</label>
+                                                <textarea class="form-control" id="binhLuan" name="binhLuan" rows="4" required></textarea>
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-star text-primary" style="font-size: 3rem;"></i>
+                            <h4 class="mt-3">No Reviews Yet</h4>
+                            <p class="text-muted">Be the first to review this product!</p>
+                            
+                            <div class="card shadow-sm mt-4 mx-auto" style="max-width: 600px;">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Write a Review</h5>
+                                    <form asp-controller="SanPham" asp-action="AddReview" method="post">
+                                        <input type="hidden" name="maSanPham" value="@Model.MaSanPham" />
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label">Rating</label>
+                                            <div class="rating-group">
+                                                @for (int i = 5; i >= 1; i--)
+                                                {
+                                                    <input type="radio" class="rating-input" name="xepHang" id="rating2-@i" value="@i" @(i == 5 ? "checked" : "") />
+                                                    <label class="rating-label" for="rating2-@i"><i class="bi bi-star-fill"></i></label>
+                                                }
+                                            </div>
+                                            <div class="rating-description" id="ratingDescription2">Excellent</div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="binhLuan2" class="form-label">Your Review</label>
+                                            <textarea class="form-control" id="binhLuan2" name="binhLuan" rows="4" required></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+                <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="mb-3">Shipping Information</h3>
+                            <p>We strive to deliver your fresh seafood in the shortest possible time to ensure maximum freshness.</p>
+                            
+                            <h5 class="mt-4">Delivery Options</h5>
+                            <ul class="list-group mb-4">
+                                <li class="list-group-item d-flex align-items-center">
+                                    <i class="bi bi-truck fs-4 me-3 text-primary"></i>
+                                    <div>
+                                        <h6 class="mb-0">Standard Shipping</h6>
+                                        <p class="mb-0 text-muted small">2-3 business days</p>
+                                    </div>
+                                    <span class="ms-auto fw-bold">Free</span>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <i class="bi bi-lightning fs-4 me-3 text-warning"></i>
+                                    <div>
+                                        <h6 class="mb-0">Express Shipping</h6>
+                                        <p class="mb-0 text-muted small">Next business day</p>
+                                    </div>
+                                    <span class="ms-auto fw-bold">50,000 VND</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h3 class="mb-3">Return Policy</h3>
+                            <p>Due to the nature of fresh seafood products, we have a special return policy:</p>
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Quality Guarantee</h5>
+                                    <p class="card-text">If you receive seafood that is not fresh or damaged during transit, please contact us within 24 hours of delivery.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Contact Information</h5>
+                                    <p class="mb-2"><i class="bi bi-telephone me-2"></i> Customer Support: 123-456-789</p>
+                                    <p class="mb-0"><i class="bi bi-envelope me-2"></i> Email: support@doancoso.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products Section -->
+    @if (ViewBag.RelatedProducts != null && ViewBag.RelatedProducts.Count > 0)
+    {
+        <div class="row mt-5 animate__animated animate__fadeIn">
+            <div class="col-12">
+                <h2 class="section-title mb-4">Related Products</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            @foreach (var relatedProduct in ViewBag.RelatedProducts)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <div class="card-img-container position-relative" style="height: 200px; overflow: hidden;">
+                            <a asp-controller="SanPham" asp-action="Display" asp-route-id="@relatedProduct.MaSanPham">
+                                <img src="@(string.IsNullOrEmpty(relatedProduct.ImageUrl) ? "/images/default-product.jpg" : relatedProduct.ImageUrl)"
+                                    class="card-img-top h-100 w-100"
+                                    style="object-fit: cover; transition: transform .5s ease;"
+                                    alt="@relatedProduct.TenSanPham" />
+                            </a>
+                            <div class="position-absolute top-0 end-0 m-2">
+                                @{
+                                    bool isRelatedProductInStock = relatedProduct.SoLuong > 0;
+                                    if (!isRelatedProductInStock)
+                                    {
+                                        <span class="badge bg-danger stock-badge">OUT OF STOCK</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success stock-badge">IN STOCK</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title mb-2">@relatedProduct.TenSanPham</h5>
+                            <p class="card-text text-primary fw-bold mb-3">@relatedProduct.GiaTheoKG.ToString("N0") VNĐ/kg</p>
+                            <div class="mt-auto">
+                                <a asp-controller="SanPham" asp-action="Display" asp-route-id="@relatedProduct.MaSanPham" 
+                                   class="btn btn-outline-primary w-100">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Lightbox for product images -->
+    <div id="lightbox" class="lightbox">
+        <span id="lightboxClose" class="lightbox-close">&times;</span>
+        <img id="lightboxImage" class="lightbox-image" src="" alt="Product Image">
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image gallery functionality
+            const mainImage = document.getElementById('mainImage');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const thumbnailWrappers = document.querySelectorAll('.thumbnail-wrapper');
+            const prevImageBtn = document.getElementById('prevImageBtn');
+            const nextImageBtn = document.getElementById('nextImageBtn');
+            let currentImageIndex = 0;
+            
+            // Update main image when clicking on thumbnail
+            thumbnailWrappers.forEach((wrapper, index) => {
+                wrapper.addEventListener('click', function() {
+                    const imageUrl = this.getAttribute('data-image');
+                    mainImage.src = imageUrl;
+                    lightboxImage.src = imageUrl;
+                    
+                    // Update active state
+                    thumbnailWrappers.forEach(w => w.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update current index
+                    currentImageIndex = index;
+                });
+            });
+            
+            // Open lightbox when clicking on main image
+            mainImage.addEventListener('click', function() {
+                lightboxImage.src = mainImage.src;
+                lightbox.classList.add('active');
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Navigate through images
+            prevImageBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateImages(-1);
+            });
+            
+            nextImageBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateImages(1);
+            });
+            
+            function navigateImages(direction) {
+                currentImageIndex += direction;
+                
+                // Loop to beginning or end if out of bounds
+                if (currentImageIndex < 0) {
+                    currentImageIndex = thumbnailWrappers.length - 1;
+                } else if (currentImageIndex >= thumbnailWrappers.length) {
+                    currentImageIndex = 0;
+                }
+                
+                // Update active thumbnail and main image
+                thumbnailWrappers.forEach(w => w.classList.remove('active'));
+                thumbnailWrappers[currentImageIndex].classList.add('active');
+                
+                const imageUrl = thumbnailWrappers[currentImageIndex].getAttribute('data-image');
+                mainImage.src = imageUrl;
+                lightboxImage.src = imageUrl;
+            }
+            
+            // Quantity increment/decrement
+            window.incrementQuantity = function() {
+                const input = document.getElementById('soLuong');
+                const max = parseInt(input.getAttribute('max'));
+                const currentValue = parseInt(input.value);
+                
+                if (currentValue < max) {
+                    input.value = currentValue + 1;
+                }
+            };
+            
+            window.decrementQuantity = function() {
+                const input = document.getElementById('soLuong');
+                const currentValue = parseInt(input.value);
+                
+                if (currentValue > 1) {
+                    input.value = currentValue - 1;
+                }
+            };
+            
+            // Rating description
+            const ratingInputs = document.querySelectorAll('.rating-input');
+            const ratingDescription = document.getElementById('ratingDescription');
+            const ratingDescription2 = document.getElementById('ratingDescription2');
+            
+            if (ratingInputs.length > 0) {
+                const ratingTexts = {
+                    5: 'Excellent',
+                    4: 'Very Good',
+                    3: 'Good',
+                    2: 'Fair',
+                    1: 'Poor'
+                };
+                
+                ratingInputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        const value = parseInt(this.value);
+                        // Update the appropriate description element
+                        if (this.id.startsWith('rating2-')) {
+                            if (ratingDescription2) ratingDescription2.textContent = ratingTexts[value];
+                        } else {
+                            if (ratingDescription) ratingDescription.textContent = ratingTexts[value];
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DoAnCoSo.Models.DanhMuc>
+
+@{
+    ViewData["Title"] = "Danh sách danh mục";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Add" class="btn btn-success">Thêm mới</a>
+</p>
+
+<!-- Hiển thị Danh sách Danh mục dưới dạng bảng -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tên danh mục</th>
+            <th>Mô tả</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <!-- Liên kết tới các sản phẩm theo danh mục -->
+                        @item.TenDanhMuc
+                </td>
+                <td>@item.MoTa</td>
+                <td>
+                    <!-- Các thao tác sửa và xóa danh mục -->
+                    <a asp-action="Update" asp-route-id="@item.MaDanhMuc" class="btn btn-warning btn-sm">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaDanhMuc" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

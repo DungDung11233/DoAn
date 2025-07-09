@@ -1,0 +1,653 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\DoAnCoSo.bundle.scp.css",
+      "PackagePath": "staticwebassets\\DoAnCoSo.7y8whsl4fb.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\css\\modern-style.css",
+      "PackagePath": "staticwebassets\\css\\modern-style.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\fonts\\DejaVuSans-Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\DejaVuSans-Bold.ttf"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\fonts\\DejaVuSans.ttf",
+      "PackagePath": "staticwebassets\\fonts\\DejaVuSans.ttf"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\02067cc1-22fc-4c7f-af61-34935adb2676.png",
+      "PackagePath": "staticwebassets\\images\\02067cc1-22fc-4c7f-af61-34935adb2676.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\0600a165-ac7b-4507-b3a8-ddc6241a220f.jpg",
+      "PackagePath": "staticwebassets\\images\\0600a165-ac7b-4507-b3a8-ddc6241a220f.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\078baab7-3842-4998-97fe-a4335348f27d.png",
+      "PackagePath": "staticwebassets\\images\\078baab7-3842-4998-97fe-a4335348f27d.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\0b002e0b-845f-4166-8873-313082db3ad4.jpg",
+      "PackagePath": "staticwebassets\\images\\0b002e0b-845f-4166-8873-313082db3ad4.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\0fccc746-e435-4d83-920e-ae6c57676ea3.jpg",
+      "PackagePath": "staticwebassets\\images\\0fccc746-e435-4d83-920e-ae6c57676ea3.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\145c3031-3e39-4564-afb2-6fa460eb1440.jpg",
+      "PackagePath": "staticwebassets\\images\\145c3031-3e39-4564-afb2-6fa460eb1440.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\1592935e-94b2-4f2f-8696-c108909499b7.jpg",
+      "PackagePath": "staticwebassets\\images\\1592935e-94b2-4f2f-8696-c108909499b7.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\190ebb96-1f2d-4782-88b0-d6eaa8121779.jpg",
+      "PackagePath": "staticwebassets\\images\\190ebb96-1f2d-4782-88b0-d6eaa8121779.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\1f752fae-ca53-4930-9a6d-7bb4d740237e.jpeg",
+      "PackagePath": "staticwebassets\\images\\1f752fae-ca53-4930-9a6d-7bb4d740237e.jpeg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\20232017-9f83-4eff-9714-9e075afd7a35.jpg",
+      "PackagePath": "staticwebassets\\images\\20232017-9f83-4eff-9714-9e075afd7a35.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\21b48ae4-97f1-4962-9a53-1b904da6539f.webp",
+      "PackagePath": "staticwebassets\\images\\21b48ae4-97f1-4962-9a53-1b904da6539f.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\26740c61-d6c1-44a6-8557-4376ebc6c08c.jpg",
+      "PackagePath": "staticwebassets\\images\\26740c61-d6c1-44a6-8557-4376ebc6c08c.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\28a64a5d-d001-4a25-b7ce-12385f829699.jpg",
+      "PackagePath": "staticwebassets\\images\\28a64a5d-d001-4a25-b7ce-12385f829699.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\2d8f9bcb-404a-46b4-8392-db689ec91c39.jpg",
+      "PackagePath": "staticwebassets\\images\\2d8f9bcb-404a-46b4-8392-db689ec91c39.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\2e0706df-294c-49ff-b71b-4ce8b4f1f89e.jpg",
+      "PackagePath": "staticwebassets\\images\\2e0706df-294c-49ff-b71b-4ce8b4f1f89e.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\2eae0646-fc85-43a3-94c4-77622209a791.jpg",
+      "PackagePath": "staticwebassets\\images\\2eae0646-fc85-43a3-94c4-77622209a791.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\32ac38d8-26c3-4699-9378-7affbabb1669.jpg",
+      "PackagePath": "staticwebassets\\images\\32ac38d8-26c3-4699-9378-7affbabb1669.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\39ab8bd1-8fa7-4ae1-9b49-3a68444e28e3.png",
+      "PackagePath": "staticwebassets\\images\\39ab8bd1-8fa7-4ae1-9b49-3a68444e28e3.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\3fa73bfd-72c8-4c60-9081-3f5438210242.png",
+      "PackagePath": "staticwebassets\\images\\3fa73bfd-72c8-4c60-9081-3f5438210242.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\40ce168c-2ee0-44de-b544-6642c07999e0.jpg",
+      "PackagePath": "staticwebassets\\images\\40ce168c-2ee0-44de-b544-6642c07999e0.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\4278de69-696e-4433-8290-4b744eaf4f8d.jpg",
+      "PackagePath": "staticwebassets\\images\\4278de69-696e-4433-8290-4b744eaf4f8d.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\4436bd71-6ed8-4917-8e23-cf13076e25a8.jpg",
+      "PackagePath": "staticwebassets\\images\\4436bd71-6ed8-4917-8e23-cf13076e25a8.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\4439b860-d269-45bd-a63c-39c303056928.jpg",
+      "PackagePath": "staticwebassets\\images\\4439b860-d269-45bd-a63c-39c303056928.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\444b89b5-2084-40af-9406-5ebd9d3139fa.webp",
+      "PackagePath": "staticwebassets\\images\\444b89b5-2084-40af-9406-5ebd9d3139fa.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\51ce870b-5f58-42dc-908d-b67f4c45d396.jpg",
+      "PackagePath": "staticwebassets\\images\\51ce870b-5f58-42dc-908d-b67f4c45d396.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\58df71f5-edac-45fa-8996-17e0a92efc9e.jpg",
+      "PackagePath": "staticwebassets\\images\\58df71f5-edac-45fa-8996-17e0a92efc9e.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\5ac0ce8d-4d89-4f5f-ae75-9aa32663049a.jpg",
+      "PackagePath": "staticwebassets\\images\\5ac0ce8d-4d89-4f5f-ae75-9aa32663049a.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\5adb26fc-ddf5-4b20-8812-a1d1ce727260.jpg",
+      "PackagePath": "staticwebassets\\images\\5adb26fc-ddf5-4b20-8812-a1d1ce727260.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\5e9fb3aa-1894-4029-af36-ba73fc7673b1.webp",
+      "PackagePath": "staticwebassets\\images\\5e9fb3aa-1894-4029-af36-ba73fc7673b1.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\6033022e-562f-4642-a3b1-5469587e1b34.jpeg",
+      "PackagePath": "staticwebassets\\images\\6033022e-562f-4642-a3b1-5469587e1b34.jpeg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\643ed408-1bb6-4298-a1c1-decf545f29d2.jpg",
+      "PackagePath": "staticwebassets\\images\\643ed408-1bb6-4298-a1c1-decf545f29d2.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\64a09a62-c910-456f-a49a-f75b553ebb26.jpg",
+      "PackagePath": "staticwebassets\\images\\64a09a62-c910-456f-a49a-f75b553ebb26.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\65d6f5ce-8515-46e3-8abd-cfcd24eb404d.jpg",
+      "PackagePath": "staticwebassets\\images\\65d6f5ce-8515-46e3-8abd-cfcd24eb404d.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\671ee565-f3fc-4112-9f9c-bbfaa508f825.jpg",
+      "PackagePath": "staticwebassets\\images\\671ee565-f3fc-4112-9f9c-bbfaa508f825.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\67530bdd-4697-4e4e-8fdf-adbf8f284160.jpg",
+      "PackagePath": "staticwebassets\\images\\67530bdd-4697-4e4e-8fdf-adbf8f284160.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\68c278ee-2610-45cf-819b-b8eaec6fa6ef.jpg",
+      "PackagePath": "staticwebassets\\images\\68c278ee-2610-45cf-819b-b8eaec6fa6ef.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\6ca72d82-2097-44c6-856e-a66cabaf47ba.jpg",
+      "PackagePath": "staticwebassets\\images\\6ca72d82-2097-44c6-856e-a66cabaf47ba.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\7204f963-4aff-4da5-8411-69d93cb6255a.jpg",
+      "PackagePath": "staticwebassets\\images\\7204f963-4aff-4da5-8411-69d93cb6255a.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\7577d6e7-1914-4c79-ae84-272b5b699f11.png",
+      "PackagePath": "staticwebassets\\images\\7577d6e7-1914-4c79-ae84-272b5b699f11.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\76e818a8-492e-4800-a138-67dec945a3c8.jpg",
+      "PackagePath": "staticwebassets\\images\\76e818a8-492e-4800-a138-67dec945a3c8.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\7d40159d-9d7f-42c4-ad8b-a5b347941b62.png",
+      "PackagePath": "staticwebassets\\images\\7d40159d-9d7f-42c4-ad8b-a5b347941b62.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\7e064392-ae81-4541-98a7-b2b27079f2c4.jpg",
+      "PackagePath": "staticwebassets\\images\\7e064392-ae81-4541-98a7-b2b27079f2c4.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\7fe12e18-5c82-4600-9040-8ee7e75a7755.jpg",
+      "PackagePath": "staticwebassets\\images\\7fe12e18-5c82-4600-9040-8ee7e75a7755.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\8c3d8124-2cb2-4dec-a247-47640242528a.png",
+      "PackagePath": "staticwebassets\\images\\8c3d8124-2cb2-4dec-a247-47640242528a.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\8e99c82e-3c34-49f7-84ba-a40eeb3e145d.webp",
+      "PackagePath": "staticwebassets\\images\\8e99c82e-3c34-49f7-84ba-a40eeb3e145d.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\8f028ac6-40b6-41a1-985d-95b6840e55f5.webp",
+      "PackagePath": "staticwebassets\\images\\8f028ac6-40b6-41a1-985d-95b6840e55f5.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\92651976-d094-4f73-9067-e7fbfcc4e66f.jpg",
+      "PackagePath": "staticwebassets\\images\\92651976-d094-4f73-9067-e7fbfcc4e66f.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\92869108-6872-4171-a9ed-b00eef8e2e2c.jpg",
+      "PackagePath": "staticwebassets\\images\\92869108-6872-4171-a9ed-b00eef8e2e2c.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\96134d4e-f255-48b0-8e74-b647cff5b747.jpg",
+      "PackagePath": "staticwebassets\\images\\96134d4e-f255-48b0-8e74-b647cff5b747.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\98621a65-8b55-4922-a141-8beb5b5d6f40.jpg",
+      "PackagePath": "staticwebassets\\images\\98621a65-8b55-4922-a141-8beb5b5d6f40.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\9dcdfe65-2d40-4135-804b-ea1628e4c144.png",
+      "PackagePath": "staticwebassets\\images\\9dcdfe65-2d40-4135-804b-ea1628e4c144.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\9dee18c2-0134-4b71-b686-6782ada91b2f.jpg",
+      "PackagePath": "staticwebassets\\images\\9dee18c2-0134-4b71-b686-6782ada91b2f.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\a7098932-d011-4c5f-ae92-4c5cd4924740.jpg",
+      "PackagePath": "staticwebassets\\images\\a7098932-d011-4c5f-ae92-4c5cd4924740.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\a7c9620b-aa34-45c6-b6dc-3d0695dc0b0e.jpg",
+      "PackagePath": "staticwebassets\\images\\a7c9620b-aa34-45c6-b6dc-3d0695dc0b0e.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\a8b12c0a-132f-4cfd-9b0a-ddca192df958.jpg",
+      "PackagePath": "staticwebassets\\images\\a8b12c0a-132f-4cfd-9b0a-ddca192df958.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ae58e3b1-9da0-4569-a5ab-fde5c93c15b5.jpg",
+      "PackagePath": "staticwebassets\\images\\ae58e3b1-9da0-4569-a5ab-fde5c93c15b5.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ae7d1b4c-2f36-455d-93fc-90e2246f3957.webp",
+      "PackagePath": "staticwebassets\\images\\ae7d1b4c-2f36-455d-93fc-90e2246f3957.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\b1aeb054-3a19-4a5e-b722-406fd5babfa3.jpg",
+      "PackagePath": "staticwebassets\\images\\b1aeb054-3a19-4a5e-b722-406fd5babfa3.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\b53c9bc6-80bd-4536-aeeb-dfdacd49e9cb.jpg",
+      "PackagePath": "staticwebassets\\images\\b53c9bc6-80bd-4536-aeeb-dfdacd49e9cb.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\bbb37715-72b9-4b81-9ae2-b9e57759d9a3.jpg",
+      "PackagePath": "staticwebassets\\images\\bbb37715-72b9-4b81-9ae2-b9e57759d9a3.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\bec83c4a-cdaf-4b02-a2af-55560276c50c.jpg",
+      "PackagePath": "staticwebassets\\images\\bec83c4a-cdaf-4b02-a2af-55560276c50c.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\c445fe1b-9293-4e44-84a4-ea501c51f694.jpg",
+      "PackagePath": "staticwebassets\\images\\c445fe1b-9293-4e44-84a4-ea501c51f694.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\c6bc064d-f207-41ef-af42-f4e01fc7888d.jpg",
+      "PackagePath": "staticwebassets\\images\\c6bc064d-f207-41ef-af42-f4e01fc7888d.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\c6ca6c10-e1fa-4856-adac-5d1e027a8b3a.png",
+      "PackagePath": "staticwebassets\\images\\c6ca6c10-e1fa-4856-adac-5d1e027a8b3a.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\cfddd0ca-c66b-42ea-8ee2-f59147ff6304.jpg",
+      "PackagePath": "staticwebassets\\images\\cfddd0ca-c66b-42ea-8ee2-f59147ff6304.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\d1ea4106-a7ea-4110-aa98-98069df61e4d.jpg",
+      "PackagePath": "staticwebassets\\images\\d1ea4106-a7ea-4110-aa98-98069df61e4d.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\d20b628a-44a5-4e67-87c8-92d7368c8e73.webp",
+      "PackagePath": "staticwebassets\\images\\d20b628a-44a5-4e67-87c8-92d7368c8e73.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\d2f2c90e-f738-4a08-9285-fe662c5ba730.jpg",
+      "PackagePath": "staticwebassets\\images\\d2f2c90e-f738-4a08-9285-fe662c5ba730.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\d41c30cc-ae90-49cc-a402-779f4cdfb114.jpg",
+      "PackagePath": "staticwebassets\\images\\d41c30cc-ae90-49cc-a402-779f4cdfb114.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\d86ea29b-6263-4e47-a053-b8ca3a4a084c.png",
+      "PackagePath": "staticwebassets\\images\\d86ea29b-6263-4e47-a053-b8ca3a4a084c.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\db6a29f8-b04c-40c2-9daa-3cb75c53af05.jpg",
+      "PackagePath": "staticwebassets\\images\\db6a29f8-b04c-40c2-9daa-3cb75c53af05.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\dc53ecb1-c6a5-43d5-af9e-cb574fe02004.jpg",
+      "PackagePath": "staticwebassets\\images\\dc53ecb1-c6a5-43d5-af9e-cb574fe02004.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\dcaee429-74ce-4cdc-a16c-768b5a656f01.jpg",
+      "PackagePath": "staticwebassets\\images\\dcaee429-74ce-4cdc-a16c-768b5a656f01.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\df72c6b5-2d80-4397-aa6e-6c0458f02ddb.png",
+      "PackagePath": "staticwebassets\\images\\df72c6b5-2d80-4397-aa6e-6c0458f02ddb.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\e69286a6-fbeb-42f0-b9ab-1a2f1df84980.jpg",
+      "PackagePath": "staticwebassets\\images\\e69286a6-fbeb-42f0-b9ab-1a2f1df84980.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\e732f2c4-9407-4e23-9ede-c0c542882191.jpg",
+      "PackagePath": "staticwebassets\\images\\e732f2c4-9407-4e23-9ede-c0c542882191.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\e8658edc-59ef-4173-984e-35e57c6ff250.jpg",
+      "PackagePath": "staticwebassets\\images\\e8658edc-59ef-4173-984e-35e57c6ff250.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\e8bbdd03-0a20-44e6-846b-5841785ef609.jpg",
+      "PackagePath": "staticwebassets\\images\\e8bbdd03-0a20-44e6-846b-5841785ef609.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ebf5bbdc-2d41-487d-bcfa-a7beeec8307c.png",
+      "PackagePath": "staticwebassets\\images\\ebf5bbdc-2d41-487d-bcfa-a7beeec8307c.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ec3c591e-c7fb-4f2a-8845-324a745d8ae3.jpg",
+      "PackagePath": "staticwebassets\\images\\ec3c591e-c7fb-4f2a-8845-324a745d8ae3.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ed9a28d2-614d-46e3-a7dd-65bb8d3169a0.webp",
+      "PackagePath": "staticwebassets\\images\\ed9a28d2-614d-46e3-a7dd-65bb8d3169a0.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ee46782c-836a-48c1-8b2a-2219822ed662.jpg",
+      "PackagePath": "staticwebassets\\images\\ee46782c-836a-48c1-8b2a-2219822ed662.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\f2dcd62e-3261-4e4d-986f-1d5afd63b517.jpg",
+      "PackagePath": "staticwebassets\\images\\f2dcd62e-3261-4e4d-986f-1d5afd63b517.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\f8264b06-311f-4bfd-b78d-3c255d96ab62.png",
+      "PackagePath": "staticwebassets\\images\\f8264b06-311f-4bfd-b78d-3c255d96ab62.png"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\fd4dcb3c-9f68-473c-82e7-2ab84cd2bc88.jpg",
+      "PackagePath": "staticwebassets\\images\\fd4dcb3c-9f68-473c-82e7-2ab84cd2bc88.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\fe57d2dd-83e2-4114-bd03-b15544093c54.jpg",
+      "PackagePath": "staticwebassets\\images\\fe57d2dd-83e2-4114-bd03-b15544093c54.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\fea202a1-5bbd-4cac-8ca7-6f03cfa53e9b.webp",
+      "PackagePath": "staticwebassets\\images\\fea202a1-5bbd-4cac-8ca7-6f03cfa53e9b.webp"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ff58d531-0f47-45da-9bf3-eb802c5654b5.jpg",
+      "PackagePath": "staticwebassets\\images\\ff58d531-0f47-45da-9bf3-eb802c5654b5.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ff806b7b-d7ef-4c90-9a42-aec77e3fc7b3.jpg",
+      "PackagePath": "staticwebassets\\images\\ff806b7b-d7ef-4c90-9a42-aec77e3fc7b3.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\images\\ff8d34f0-d6c7-4e88-b712-c92b65dd2544.jpg",
+      "PackagePath": "staticwebassets\\images\\ff8d34f0-d6c7-4e88-b712-c92b65dd2544.jpg"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.js"
+    },
+    {
+      "Id": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.DoAnCoSo.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.DoAnCoSo.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.DoAnCoSo.props",
+      "PackagePath": "build\\DoAnCoSo.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.DoAnCoSo.props",
+      "PackagePath": "buildMultiTargeting\\DoAnCoSo.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.DoAnCoSo.props",
+      "PackagePath": "buildTransitive\\DoAnCoSo.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

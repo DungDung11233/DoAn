@@ -1,0 +1,83 @@
+@model IEnumerable<DoAnCoSo.Models.PhieuNhapHang>
+
+@{
+    ViewData["Title"] = "Danh sách phiếu nhập hàng";
+}
+
+<div class="container">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Tạo phiếu nhập hàng mới
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="phieuNhapTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã phiếu</th>
+                            <th>Ngày tạo</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Tổng số lượng</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaPhieuNhap</td>
+                                <td>@item.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@(item.NhaCungCap?.TenNCC ?? "N/A")</td>
+                                <td>@item.TongSoLuong</td>
+                                <td>@item.TongTien.ToString("N0") VNĐ</td>
+                                <td>
+                                    @if (item.DaXacNhan)
+                                    {
+                                        <span class="badge bg-success">Đã xác nhận</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">Chờ xác nhận</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.MaPhieuNhap" class="btn btn-info btn-sm">
+                                        <i class="fas fa-info-circle"></i> Chi tiết
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#phieuNhapTable').DataTable({
+                "order": [[1, "desc"]], // Sắp xếp theo ngày tạo mới nhất
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+                }
+            });
+        });
+    </script>
+} 

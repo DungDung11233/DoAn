@@ -1,0 +1,591 @@
+﻿@model DoAnCoSo.Models.ShoppingCart
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container mb-5">
+    <!-- Page header with animated wave -->
+    <div class="cart-header position-relative mb-5 overflow-hidden rounded-4">
+        <div class="cart-header-content py-5 text-center position-relative">
+            <h1 class="display-5 fw-bold text-white mb-1">Your Shopping Cart</h1>
+            <p class="text-white-50 mb-0">@(Model.Items.Count > 0 ? $"{Model.Items.Count} items in your cart" : "Your cart is empty")</p>
+        </div>
+        <div class="wave-animation">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+            <div class="wave wave4"></div>
+        </div>
+    </div>
+
+    @if (Model.Items.Count == 0)
+    {
+        <div class="empty-cart-container text-center">
+            <div class="empty-cart-animation mb-4">
+                <i class="bi bi-cart-x display-1 text-secondary"></i>
+                <div class="empty-cart-ripple"></div>
+            </div>
+            <h3 class="mb-3">Your cart is waiting to be filled</h3>
+            <p class="text-muted mb-4 col-md-6 mx-auto">Discover our fresh seafood selection and add your favorites to the cart!</p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow-sm">
+                <i class="bi bi-arrow-left me-2"></i>Start Shopping
+            </a>
+            <div class="suggested-products mt-5">
+                <h4 class="mb-4">Popular Products</h4>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 suggested-product">
+                            <div class="bg-light rounded-top p-3 text-center">
+                                <img src="/images/default-product.jpg" class="img-fluid rounded" style="height: 140px; object-fit: cover;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Fresh Salmon</h5>
+                                <p class="card-text text-primary fw-bold">$24.99</p>
+                                <a href="@Url.Action("Index", "SanPham")" class="btn btn-outline-primary w-100">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 suggested-product">
+                            <div class="bg-light rounded-top p-3 text-center">
+                                <img src="/images/default-product.jpg" class="img-fluid rounded" style="height: 140px; object-fit: cover;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">King Crab</h5>
+                                <p class="card-text text-primary fw-bold">$35.99</p>
+                                <a href="@Url.Action("Index", "SanPham")" class="btn btn-outline-primary w-100">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <!-- Cart items with animated effects -->
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-header bg-light py-3 d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-basket2-fill me-2 text-primary"></i>Your Items</h5>
+                        <span class="badge bg-primary rounded-pill">@Model.Items.Count items</span>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="cart-items">
+                            @foreach (var item in Model.Items)
+                            {
+                                <div class="cart-item p-3 border-bottom position-relative cart-item-animated">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <div class="d-flex align-items-center">
+                                                <div class="cart-item-img-wrapper me-3">
+                                                    <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-product.jpg" : item.ImageUrl)" 
+                                                         alt="@item.TenSanPham" 
+                                                         class="rounded shadow-sm cart-item-img" />
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0 fw-semibold">@item.TenSanPham</h6>
+                                                    <span class="text-muted d-block small">Product ID: @item.MaSanPham</span>
+                                                    <span class="badge bg-light text-primary mt-1">Seafood</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 mb-3 mb-md-0 text-md-center">
+                                            <div class="text-muted small d-md-none">Price:</div>
+                                            <span class="fw-medium">@item.GiaTheoKG.ToString("C0")</span>
+                                        </div>
+                                        <div class="col-md-2 mb-3 mb-md-0">
+                                            <div class="text-muted small d-md-none">Quantity:</div>
+                                            <div class="quantity-control-wrapper mx-auto">
+                                                <div class="input-group input-group-sm quantity-control">
+                                                    <button class="btn btn-outline-primary quantity-decrease" type="button">
+                                                        <i class="bi bi-dash"></i>
+                                                    </button>
+                                                    <input type="number"
+                                                           class="form-control text-center quantity-input border-primary"
+                                                           data-product-id="@item.MaSanPham"
+                                                           value="@item.SoLuong"
+                                                           min="1" />
+                                                    <button class="btn btn-outline-primary quantity-increase" type="button">
+                                                        <i class="bi bi-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 text-md-end">
+                                            <div class="text-muted small d-md-none">Total:</div>
+                                            <span class="fw-bold text-accent fs-5">
+                                                @((item.GiaTheoKG * item.SoLuong).ToString("C0"))
+                                            </span>
+                                            <form asp-action="RemoveFromCart" method="post" class="d-inline ms-2 ms-md-0 mt-md-2">
+                                                <input type="hidden" name="maSanPham" value="@item.MaSanPham" />
+                                                <button type="submit" class="btn btn-sm text-danger bg-light rounded-circle shadow-sm remove-btn" 
+                                                        data-bs-toggle="tooltip" title="Remove item">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white py-3">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center">
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary rounded-pill mb-2 mb-md-0">
+                                <i class="bi bi-arrow-left me-2"></i>Continue Shopping
+                            </a>
+                            <form asp-action="ClearCart" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-outline-danger rounded-pill">
+                                    <i class="bi bi-trash me-2"></i>Clear Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order summary with glass morphism effect -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 order-summary-card">
+                    <div class="card-header py-4 bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-receipt me-2"></i>Order Summary</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="summary-item d-flex justify-content-between mb-3">
+                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-value">@Model.Items.Sum(i => i.GiaTheoKG * i.SoLuong).ToString("C0")</span>
+                        </div>
+                        <div class="summary-item d-flex justify-content-between mb-3">
+                            <span class="summary-label">Shipping</span>
+                            <span class="summary-value free-shipping">Free</span>
+                        </div>
+                        <div class="summary-item d-flex justify-content-between mb-3">
+                            <span class="summary-label">Discount</span>
+                            <span class="summary-value">$0.00</span>
+                        </div>
+                        <div class="summary-item d-flex justify-content-between mb-3">
+                            <span class="summary-label">Tax</span>
+                            <span class="summary-value">$0.00</span>
+                        </div>
+                        <div class="coupon-code mb-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Promo code">
+                                <button class="btn btn-outline-secondary" type="button">Apply</button>
+                            </div>
+                        </div>
+                        <hr class="summary-divider">
+                        <div class="summary-total d-flex justify-content-between align-items-center mb-4">
+                            <span class="summary-total-label fw-bold">Total</span>
+                            <span class="summary-total-value display-6 fw-bold text-accent">@Model.Items.Sum(i => i.GiaTheoKG * i.SoLuong).ToString("C0")</span>
+                        </div>
+                        <a asp-action="Checkout" asp-controller="ShoppingCart" class="btn btn-primary btn-lg w-100 py-3 rounded-pill checkout-btn">
+                            <i class="bi bi-credit-card me-2"></i>Checkout
+                        </a>
+                        <div class="text-center mt-4">
+                            <div class="payment-methods">
+                                <i class="bi bi-credit-card me-2 fs-5" title="Credit Card"></i>
+                                <i class="bi bi-paypal me-2 fs-5" title="PayPal"></i>
+                                <i class="bi bi-wallet2 fs-5" title="Digital Wallet"></i>
+                            </div>
+                            <p class="mt-2 mb-0 text-muted small">Secure Payment Processing</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trust badges -->
+                <div class="trust-badges card border-0 shadow-sm rounded-4 mt-4 p-3">
+                    <div class="card-body px-3 py-2">
+                        <div class="row g-3 text-center">
+                            <div class="col-4">
+                                <div class="trust-badge">
+                                    <i class="bi bi-shield-check text-success fs-3"></i>
+                                    <span class="d-block small mt-1">Secure</span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="trust-badge">
+                                    <i class="bi bi-truck text-primary fs-3"></i>
+                                    <span class="d-block small mt-1">Fast Delivery</span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="trust-badge">
+                                    <i class="bi bi-arrow-counterclockwise text-danger fs-3"></i>
+                                    <span class="d-block small mt-1">Returns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- You may also like section -->
+        <div class="mt-5 pt-4">
+            <h3 class="text-center mb-4">You May Also Like</h3>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100 related-product">
+                        <img src="/images/default-product.jpg" class="card-img-top" alt="Related Product">
+                        <div class="card-body">
+                            <h5 class="card-title">Premium Tuna</h5>
+                            <p class="card-text text-primary fw-bold">$19.99</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100 related-product">
+                        <img src="/images/default-product.jpg" class="card-img-top" alt="Related Product">
+                        <div class="card-body">
+                            <h5 class="card-title">Fresh Oysters</h5>
+                            <p class="card-text text-primary fw-bold">$15.99</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100 related-product">
+                        <img src="/images/default-product.jpg" class="card-img-top" alt="Related Product">
+                        <div class="card-body">
+                            <h5 class="card-title">King Prawns</h5>
+                            <p class="card-text text-primary fw-bold">$22.99</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm h-100 related-product">
+                        <img src="/images/default-product.jpg" class="card-img-top" alt="Related Product">
+                        <div class="card-body">
+                            <h5 class="card-title">Atlantic Cod</h5>
+                            <p class="card-text text-primary fw-bold">$17.99</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    /* Cart header with wave animation */
+    .cart-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        height: 200px;
+    }
+    
+    .wave-animation {
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        bottom: 0;
+        left: 0;
+    }
+    
+    .wave {
+        position: absolute;
+        left: 0;
+        width: 200%;
+        height: 100%;
+        background-repeat: repeat-x;
+        background-position: 0 bottom;
+        transform-origin: center bottom;
+    }
+    
+    .wave1 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23FFFFFF'/%3E%3C/svg%3E");
+        animation: wave-animation 25s linear infinite;
+        z-index: 3;
+    }
+    
+    .wave2 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.5' fill='%23FFFFFF'/%3E%3C/svg%3E");
+        animation: wave-animation 20s linear infinite;
+        z-index: 2;
+    }
+    
+    .wave3 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.75' fill='%23FFFFFF'/%3E%3C/svg%3E");
+        animation: wave-animation 15s linear infinite;
+        z-index: 1;
+    }
+    
+    .wave4 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+        z-index: 0;
+    }
+    
+    @* Fixed keyframes animation *@
+    @@keyframes wave-animation {
+        0% {
+            transform: translateX(0) translateZ(0) scaleY(1);
+        }
+        50% {
+            transform: translateX(-25%) translateZ(0) scaleY(0.8);
+        }
+        100% {
+            transform: translateX(-50%) translateZ(0) scaleY(1);
+        }
+    }
+    
+    /* Empty cart styling */
+    .empty-cart-animation {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .empty-cart-ripple {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid var(--primary-dark);
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        animation: ripple 2s ease-out infinite;
+    }
+    
+    @* Fixed keyframes animation *@
+    @@keyframes ripple {
+        0% {
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0.2;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    .suggested-product {
+        transition: all 0.3s ease;
+    }
+    
+    .suggested-product:hover {
+        transform: translateY(-10px);
+    }
+    
+    /* Cart items styling */
+    .cart-items {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    .cart-items::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .cart-items::-webkit-scrollbar-track {
+        background: var(--gray-100);
+    }
+    
+    .cart-items::-webkit-scrollbar-thumb {
+        background: var(--gray-300);
+        border-radius: 10px;
+    }
+    
+    .cart-item-animated {
+        transform: translateX(0);
+        transition: all 0.3s ease;
+    }
+    
+    .cart-item-animated:hover {
+        background-color: var(--gray-100);
+    }
+    
+    .cart-item-img-wrapper {
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+    
+    .cart-item-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .cart-item-animated:hover .cart-item-img {
+        transform: scale(1.1);
+    }
+    
+    .quantity-control-wrapper {
+        width: 120px;
+    }
+    
+    .quantity-control {
+        border-radius: 30px;
+        overflow: hidden;
+    }
+    
+    .quantity-control .form-control {
+        border-left: none;
+        border-right: none;
+    }
+    
+    .remove-btn {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .remove-btn:hover {
+        background-color: var(--danger) !important;
+        color: white !important;
+    }
+    
+    /* Order summary styling */
+    .order-summary-card {
+        position: sticky;
+        top: 20px;
+    }
+    
+    .summary-item {
+        padding: 8px 0;
+    }
+    
+    .summary-label {
+        color: var(--gray-600);
+    }
+    
+    .summary-value {
+        font-weight: 500;
+    }
+    
+    .free-shipping {
+        color: var(--success);
+        font-weight: 600;
+    }
+    
+    .summary-divider {
+        border-color: var(--gray-200);
+        margin: 1rem 0;
+    }
+    
+    .summary-total-value {
+        font-size: 1.75rem;
+    }
+    
+    .checkout-btn {
+        transition: all 0.3s ease;
+    }
+    
+    .checkout-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(58, 134, 255, 0.2);
+    }
+    
+    /* Trust badges */
+    .trust-badge {
+        transition: all 0.3s ease;
+    }
+    
+    .trust-badge:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Related products */
+    .related-product {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+    }
+    
+    .related-product:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .related-product .card-img-top {
+        height: 150px;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+    
+    .related-product:hover .card-img-top {
+        transform: scale(1.1);
+    }
+</style>
+
+@section Scripts {
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // Add animations to cart items
+        document.querySelectorAll('.cart-item-animated').forEach((item, index) => {
+            item.style.animationDelay = (index * 0.1) + 's';
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, 100 + (index * 100));
+        });
+        
+        // Add event listeners for quantity controls
+        document.querySelectorAll('.quantity-decrease').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('.quantity-input');
+                const currentValue = parseInt(input.value);
+                if (currentValue > 1) {
+                    input.value = currentValue - 1;
+                    updateQuantity(input);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.quantity-increase').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('.quantity-input');
+                input.value = parseInt(input.value) + 1;
+                updateQuantity(input);
+            });
+        });
+        
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', function() {
+                updateQuantity(this);
+            });
+        });
+        
+        function updateQuantity(input) {
+            const productId = input.getAttribute('data-product-id');
+            const newQuantity = input.value;
+            
+            // Show loading indicator
+            const quantityControl = input.closest('.quantity-control');
+            quantityControl.classList.add('opacity-50');
+            
+            fetch(`/ShoppingCart/UpdateQuantity?maSanPham=${productId}&soLuong=${newQuantity}`, {
+                method: 'POST'
+            })
+            .then(() => {
+                location.reload();
+            })
+            .catch(() => {
+                quantityControl.classList.remove('opacity-50');
+                alert('Failed to update quantity. Please try again.');
+            });
+        }
+    });
+</script>
+}

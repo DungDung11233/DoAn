@@ -1,0 +1,107 @@
+﻿@model DoAnCoSo.Models.SanPham
+
+@{
+    ViewData["Title"] = "Thêm Sản Phẩm";
+    var danhMucList = ViewBag.DanhMucList as List<SelectListItem>;
+    var cangList = ViewBag.CangList as List<SelectListItem>;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow rounded-3">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">@ViewData["Title"]</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Add" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="TenSanPham" class="form-label"></label>
+                            <input asp-for="TenSanPham" class="form-control" />
+                            <span asp-validation-for="TenSanPham" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NguonGoc" class="form-label"></label>
+                            <input asp-for="NguonGoc" class="form-control" />
+                            <span asp-validation-for="NguonGoc" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SoLuong" class="form-label">Số Lượng</label>
+                            <input asp-for="SoLuong" class="form-control" type="number" min="0" required />
+                            <span asp-validation-for="SoLuong" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NgayThuHoach" class="form-label"></label>
+                            <input asp-for="NgayThuHoach" class="form-control" type="date" />
+                            <span asp-validation-for="NgayThuHoach" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LoaiBaoQuan" class="form-label"></label>
+                            <input asp-for="LoaiBaoQuan" class="form-control" />
+                            <span asp-validation-for="LoaiBaoQuan" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GiaTheoKG" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text">VNĐ</span>
+                                <input asp-for="GiaTheoKG" class="form-control" type="number" step="0.01" />
+                            </div>
+                            <span asp-validation-for="GiaTheoKG" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TinhTrang" class="form-label"></label>
+                            <input asp-for="TinhTrang" class="form-control" />
+                            <span asp-validation-for="TinhTrang" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MoTa" class="form-label"></label>
+                            <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="MoTa" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="DanhMucID">Danh mục</label>
+                            <select asp-for="DanhMucID" class="form-control" asp-items="ViewBag.DanhMucs">
+                                <option value="">-- Chọn danh mục --</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="MaLoaiID">Loại Sản Phẩm</label>
+                            <select asp-for="MaLoaiID" class="form-control" asp-items="ViewBag.LoaiSanPhams">
+                                <option value="">-- Chọn loại sản phẩm --</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Hình ảnh</label>
+                            <input type="file" name="imageUrl" class="form-control" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-plus-circle"></i> Thêm
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

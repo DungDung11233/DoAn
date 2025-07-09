@@ -1,0 +1,47 @@
+﻿@model DoAnCoSo.Models.ChiTietMua
+
+@{
+    ViewData["Title"] = "Sửa Sản Phẩm Trong Mùa";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Sửa Sản Phẩm Trong Mùa</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form asp-action="EditProductInSeason" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <input type="hidden" asp-for="MaMuaID" />
+                        <input type="hidden" asp-for="MaSanPhamID" />
+                        
+                        <div class="mb-3">
+                            <label asp-for="MaSanPhamID" class="form-label">Sản Phẩm</label>
+                            <select asp-for="MaSanPhamID" class="form-select" asp-items="ViewBag.SanPhams" disabled></select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="SoLuongTheoMua" class="form-label">Số Lượng Theo Mùa</label>
+                            <input asp-for="SoLuongTheoMua" class="form-control" min="1" />
+                            <span asp-validation-for="SoLuongTheoMua" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save me-2"></i>Lưu Thay Đổi
+                            </button>
+                            <a asp-action="Details" asp-route-id="@Model.MaMuaID" class="btn btn-secondary ms-2">
+                                <i class="bi bi-arrow-left me-2"></i>Quay Lại
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

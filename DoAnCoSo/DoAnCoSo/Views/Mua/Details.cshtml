@@ -1,0 +1,42 @@
+﻿@model DoAnCoSo.Models.Mua
+
+@{
+    ViewData["Title"] = "Chi Tiết Mùa";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Chi Tiết Mùa: @Model.TenMua</h2>
+    <p><strong>Thời Gian Vào Mùa:</strong> @Model.ThoiGianVaoMua.ToString("dd/MM/yyyy")</p>
+    <p><strong>Thời Gian Hết Mùa:</strong> @Model.ThoiGianHetMua.ToString("dd/MM/yyyy")</p>
+
+    <a asp-action="AddProductToSeason" asp-route-id="@Model.MaMua" class="btn btn-success mb-3">Thêm Sản Phẩm</a>
+
+    <h3 class="mt-4">Danh Sách Sản Phẩm Trong Mùa</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chiTiet in Model.ChiTietMuas)
+            {
+                <tr>
+                    <td>@chiTiet.SanPham.MaSanPham</td>
+                    <td>@chiTiet.SanPham.TenSanPham</td>
+                    <td>@chiTiet.SoLuongTheoMua</td>
+                    <td>
+                        <a asp-action="EditProductInSeason" asp-route-id="@Model.MaMua" asp-route-maSanPham="@chiTiet.SanPham.MaSanPham" class="btn btn-warning btn-sm">Sửa</a>
+                        <form asp-action="DeleteProductFromSeason" asp-route-id="@Model.MaMua" asp-route-maSanPham="@chiTiet.SanPham.MaSanPham" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này khỏi mùa?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>

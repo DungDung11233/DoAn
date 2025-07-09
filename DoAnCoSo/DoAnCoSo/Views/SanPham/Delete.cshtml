@@ -1,0 +1,27 @@
+﻿@model DoAnCoSo.Models.SanPham
+
+@{
+    ViewData["Title"] = "Xóa Sản Phẩm";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-danger">
+    <strong>Cảnh báo!</strong> Bạn đang xóa sản phẩm này.
+</div>
+
+<div>
+    <h3>Tên Sản Phẩm: @Model.TenSanPham</h3>
+    <p>Nguồn Gốc: @Model.NguonGoc</p>
+    <p>Ngày Thu Hoạch: @Model.NgayThuHoach.ToString("dd/MM/yyyy")</p>
+    <p>Loại Bảo Quản: @Model.LoaiBaoQuan</p>
+    <p>Giá Theo Kg: @Model.GiaTheoKG</p>
+    <p>Tình Trạng: @Model.TinhTrang</p>
+</div>
+
+<form asp-controller="SanPham" asp-action="DeleteConfirmed" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.MaSanPham" />
+    <button type="submit" class="btn btn-danger">Xóa Sản Phẩm</button>
+    <a asp-controller="SanPham" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

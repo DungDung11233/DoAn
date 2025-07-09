@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Đồ Án Hải Sản</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/modern-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DoAnCoSo.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <!-- Improved Header with Logo -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg modern-navbar">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-water me-2 text-primary" style="font-size: 1.5rem;"></i>
+                    <span class="fw-bold gradient-text">Hải Sản Tươi Sống</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-justified">
+                        <!-- Trang Chủ: Hiển thị cho tất cả vai trò và khách vãng lai -->
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-center" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door"></i> Trang Chủ
+                            </a>
+                        </li>
+
+                        <!-- Sản Phẩm: Hiển thị cho Khách hàng, Admin, và khách vãng lai -->
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Khách hàng") || User.IsInRole("Admin")) || !User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-center" asp-controller="SanPham" asp-action="Index">
+                                    <i class="bi bi-grid"></i> Sản Phẩm
+                                </a>
+                            </li>
+                        }
+
+                        <!-- Danh Mục: Hiển thị cho Khách hàng, Admin, và khách vãng lai -->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown mx-1">
+                                <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-tag"></i> Danh Mục
+                                </a>
+                                <ul class="dropdown-menu shadow-lg border-0 animate__animated animate__fadeIn" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item py-2" asp-controller="DanhMuc" asp-action="Index"><i class="bi bi-grid-1x2 me-2 text-primary"></i>Tất Cả Danh Mục</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="LoaiSanPham" asp-action="Index"><i class="bi bi-diagram-3 me-2 text-info"></i>Loại Sản Phẩm</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        <!-- Quản Lý: Chỉ hiển thị cho Admin -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown mx-1">
+                                <a class="nav-link dropdown-toggle text-center" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Quản Lý
+                                </a>
+                                <ul class="dropdown-menu shadow-lg border-0 animate__animated animate__fadeIn" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item py-2" asp-controller="SanPham" asp-action="Add"><i class="bi bi-plus-circle me-2 text-success"></i>Thêm Sản Phẩm</a></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="GiamGia" asp-action="Index"><i class="bi bi-percent me-2 text-primary"></i>Khuyến Mãi</a></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="HoaDon" asp-action="Index"><i class="bi bi-receipt-cutoff me-2 text-danger"></i>Hóa Đơn</a></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="DonHang" asp-action="Index"><i class="bi bi-receipt me-2 text-info"></i>Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="VanChuyen" asp-action="Index"><i class="bi bi-truck me-2 text-warning"></i>Vận Chuyển</a></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="NhaKho" asp-action="Index"><i class="bi bi-building me-2 text-danger"></i>Kho Hàng</a></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="Mua" asp-action="Index"><i class="bi bi-calendar-event me-2 text-success"></i>Mùa Vụ</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item py-2" asp-controller="ThongKe" asp-action="Index"><i class="bi bi-graph-up me-2 text-primary"></i>Thống Kê Doanh Thu</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        <!-- Hóa Đơn: Hiển thị cho Nhân viên và Admin -->
+                        @if (User.IsInRole("Nhân viên") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-center" asp-controller="HoaDon" asp-action="Index">
+                                    <i class="bi bi-receipt-cutoff"></i> Hóa Đơn
+                                </a>
+                            </li>
+                        }
+
+                        <!-- Tạo Phiếu Giao Hàng: Hiển thị cho Nhân viên và Admin -->
+                        @if (User.IsInRole("Nhân viên") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-center" asp-controller="VanChuyen" asp-action="Index">
+									<i class="bi bi-truck"></i>Phiếu Giao Hàng
+                                </a>
+                            </li>
+                        }
+
+                        <!-- Lịch Sử Đơn Hàng: Hiển thị cho Khách hàng -->
+                        @if (User.IsInRole("Khách hàng"))
+                        {
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-center" asp-controller="ShoppingCart" asp-action="OrderHistory">
+                                    <i class="bi bi-clock-history"></i> Lịch Sử
+                                </a>
+                            </li>
+                        }
+
+                        <!-- Phiếu Nhập Hàng: Hiển thị cho Nhà cung cấp và Admin -->
+                        @if (User.IsInRole("Nhà cung cấp") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-center" asp-controller="PhieuNhapHang" asp-action="Index">
+                                    <i class="bi bi-file-earmark-text"></i> Phiếu Nhập
+                                </a>
+                            </li>   
+                        }
+                        @if (User.IsInRole("Nhà cung cấp")){
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-center" asp-controller="PhieuNhapHang" asp-action="Create">
+                                    <i class="bi bi-file-plus"></i> Tạo Phiếu
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <partial name="_LoginPartial" />
+
+                        @using Newtonsoft.Json
+                        @inject IHttpContextAccessor HttpContextAccessor
+                        @{
+                            var cartJson = HttpContextAccessor.HttpContext.Session.GetString("Cart");
+                            var cart = string.IsNullOrEmpty(cartJson)
+                            ? new ShoppingCart { Items = new List<CartItem>() }
+                            : JsonConvert.DeserializeObject<ShoppingCart>(cartJson);
+                            int totalItems = cart?.Items?.Sum(item => item.SoLuong) ?? 0;
+                        }
+
+                        <a class="ms-3 cart-btn hover-zoom" asp-controller="ShoppingCart" asp-action="Index">
+                            <i class="bi bi-cart-fill me-1"></i> Giỏ Hàng
+                            @if (totalItems > 0)
+                            {
+                                <span class="badge rounded-pill bg-accent ms-1 animate__animated animate__heartBeat animate__infinite">
+                                    @totalItems
+                                </span>
+                            }
+                        </a>
+                    </div>
+ 
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Enhanced Promo Banner -->
+    <div class="container mt-3">
+        <div class="scroll-banner animate__animated animate__fadeIn" data-aos="fade-up">
+            <div id="scrollText" class="scroll-text"></div>
+        </div>
+    </div>
+
+    <main role="main" class="container mt-4 page-transition">
+        @RenderBody()
+    </main>
+
+    <!-- Enhanced Modern Footer -->
+    <footer class="modern-footer mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-water text-white me-2" style="font-size: 2rem;"></i>
+                        <h4 class="text-white mb-0 fw-bold">Hải Sản Tươi Sống</h4>
+                    </div>
+                    <p class="text-white-50">Chúng tôi cung cấp hải sản tươi ngon trực tiếp từ ngư dân địa phương đến bàn ăn của bạn, đảm bảo chất lượng và sự bền vững.</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2 hover-zoom">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2 hover-zoom">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2 hover-zoom">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle hover-zoom">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <h5 class="footer-heading">Liên Kết Nhanh</h5>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="Index"><i class="bi bi-chevron-right me-2"></i>Trang Chủ</a></li>
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Khách hàng") || User.IsInRole("Admin")) || !User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-controller="SanPham" asp-action="Index"><i class="bi bi-chevron-right me-2"></i>Sản Phẩm</a></li>
+                        }
+                        <li><a asp-controller="Home" asp-action="Privacy"><i class="bi bi-chevron-right me-2"></i>Chính Sách</a></li>
+                        @if (User.IsInRole("Khách hàng"))
+                        {
+                            <li><a asp-controller="ShoppingCart" asp-action="OrderHistory"><i class="bi bi-chevron-right me-2"></i>Đơn Hàng</a></li>
+                        }
+                        @if (User.IsInRole("Nhân viên") || User.IsInRole("Admin"))
+                        {
+                            <li><a asp-controller="VanChuyen" asp-action="Index"><i class="bi bi-chevron-right me-2"></i>Vận Chuyển</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <h5 class="footer-heading">Danh Mục</h5>
+                    <ul class="footer-links">
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Khách hàng") || User.IsInRole("Admin")) || !User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-controller="DanhMuc" asp-action="Index"><i class="bi bi-chevron-right me-2"></i>Tất Cả Danh Mục</a></li>
+                            <li><a asp-controller="LoaiSanPham" asp-action="Index"><i class="bi bi-chevron-right me-2"></i>Loại Sản Phẩm</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <h5 class="footer-heading">Liên Hệ</h5>
+                    <div class="d-flex mb-3">
+                        <div class="footer-icon-container me-3">
+                            <i class="bi bi-geo-alt text-secondary"></i>
+                        </div>
+                        <p class="text-white-50 mb-0">246 Đường Nguyễn Văn Cừ, Quận 5, Thành phố Hồ Chí Minh</p>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="footer-icon-container me-3">
+                            <i class="bi bi-envelope text-secondary"></i>
+                        </div>
+                        <p class="text-white-50 mb-0">
+                            <a href="mailto:contact@haisantuoisong.com" class="text-white-50 text-decoration-none">contact@haisantuoisong.com</a>
+                        </p>
+                    </div>
+                    <div class="d-flex">
+                        <div class="footer-icon-container me-3">
+                            <i class="bi bi-telephone text-secondary"></i>
+                        </div>
+                        <p class="text-white-50 mb-0">
+                            <a href="tel:+842839123456" class="text-white-50 text-decoration-none">+84 28 3912 3456</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-md-0">© 2025 - Hải Sản Tươi Sống - Đồ Án Cơ Sở Web</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="mb-0">Thiết kế bởi <span class="text-secondary">Nhóm 10</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTopBtn" class="back-to-top-btn">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- Enhanced Scripts -->
+    <script>
+        // AOS initialization
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Scroll banner messages
+        const messages = [
+            "🐟 Giảm giá 15% cho cá tươi ngon các loại! Mua ngay hôm nay! 🐟",
+            "🦐 Khuyến mãi tôm: Mua 1 tặng 1 chỉ hôm nay! 🦐",
+            "🐠 Cá ngừ đại dương cao cấp - Tươi ngon hàng ngày! 🐠",
+            "🦑 Mực tươi số lượng có hạn - Đặt hàng ngay! 🦑"
+        ];
+
+        let index = 0;
+        const scrollText = document.getElementById("scrollText");
+        const scrollBanner = document.querySelector(".scroll-banner");
+
+        function scrollMessage() {
+            const bannerWidth = scrollBanner.offsetWidth;
+            scrollText.style.left = bannerWidth + 'px';
+            scrollText.textContent = messages[index];
+
+            setTimeout(() => {
+                const textWidth = scrollText.offsetWidth;
+                let pos = bannerWidth;
+
+                const interval = setInterval(() => {
+                    if (pos < -textWidth) {
+                        clearInterval(interval);
+                        index = (index + 1) % messages.length;
+                        scrollMessage();
+                    } else {
+                        pos -= 2;
+                        scrollText.style.left = pos + 'px';
+                    }
+                }, 20);
+            }, 10);
+        }
+
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Start scrolling animation & other initializations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            scrollMessage();
+            
+            // Add active class to current nav item
+            const currentPath = window.location.pathname.toLowerCase();
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                const href = link.getAttribute('href').toLowerCase();
+                if (currentPath === href || (href !== '/' && currentPath.startsWith(href))) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Initialize tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+</html>

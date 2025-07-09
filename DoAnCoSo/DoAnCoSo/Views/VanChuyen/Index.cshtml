@@ -1,0 +1,49 @@
+@model IEnumerable<DoAnCoSo.Models.PhieuVanChuyen>
+
+@{
+    ViewData["Title"] = "Quản lý vận chuyển";
+}
+
+<div class="container mt-4">
+    <h2>Quản lý vận chuyển</h2>
+
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">Tạo phiếu vận chuyển mới</a>
+        <a asp-action="PendingDeliveries" class="btn btn-warning">Đơn hàng đang vận chuyển</a>
+        <a asp-action="DeliveryHistory" class="btn btn-info">Lịch sử giao hàng</a>
+        <a asp-controller="PhuongTienVanChuyen" asp-action="Index" class="btn btn-success">Quản lý phương tiện</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Danh sách phiếu vận chuyển</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã vận chuyển</th>
+                        <th>Phương tiện</th>
+                        <th>Nhân viên</th>
+                        <th>Ngày vận chuyển</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaVanChuyen</td>
+                            <td>@(item.PhuongTienVanChuyen?.LoaiPhuongTien ?? "Không xác định")</td>
+                            <td>@(item.NhanVien?.TenNhanVien ?? "Không xác định")</td>
+                            <td>@item.NgayVanChuyen.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.MaVanChuyen" class="btn btn-sm btn-info">Chi tiết</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

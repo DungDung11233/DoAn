@@ -1,0 +1,100 @@
+﻿@model DoAnCoSo.Models.SanPham
+
+@{
+    ViewData["Title"] = "Cập nhật sản phẩm";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-header bg-warning text-white rounded-top-4">
+                    <h4 class="mb-0"><i class="bi bi-pencil-square me-2"></i>@ViewData["Title"]</h4>
+                </div>
+                <div class="card-body px-4 py-4">
+                    <form method="post" enctype="multipart/form-data" asp-action="Update">
+                        <input type="hidden" name="MaSanPham" value="@Model.MaSanPham" />
+
+                        <div class="mb-3">
+                            <label for="TenSanPham" class="form-label">Tên Sản Phẩm</label>
+                            <input type="text" class="form-control" id="TenSanPham" name="TenSanPham" value="@Model.TenSanPham" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="NguonGoc" class="form-label">Nguồn Gốc</label>
+                            <input type="text" class="form-control" id="NguonGoc" name="NguonGoc" value="@Model.NguonGoc" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="NgayThuHoach" class="form-label">Ngày Thu Hoạch</label>
+                            <input type="date" class="form-control" id="NgayThuHoach" name="NgayThuHoach"
+                                   value="@Model.NgayThuHoach.ToString("yyyy-MM-dd")" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="LoaiBaoQuan" class="form-label">Loại Bảo Quản</label>
+                            <input type="text" class="form-control" id="LoaiBaoQuan" name="LoaiBaoQuan" value="@Model.LoaiBaoQuan" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="GiaTheoKG" class="form-label">Giá Theo Kg (VNĐ)</label>
+                            <input type="number" class="form-control" id="GiaTheoKG" name="GiaTheoKG" step="0.01" value="@Model.GiaTheoKG" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="TinhTrang" class="form-label">Tình Trạng</label>
+                            <input type="text" class="form-control" id="TinhTrang" name="TinhTrang" value="@Model.TinhTrang" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="SoLuong" class="form-label">Số Lượng Tồn Kho</label>
+                            <input type="number" class="form-control" id="SoLuong" name="SoLuong" value="@Model.SoLuong" min="0" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="DanhMucID" class="form-label">Danh Mục</label>
+                            <select asp-for="DanhMucID" asp-items="@ViewBag.DanhMucs" class="form-control"></select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imageUrl" class="form-label">Cập Nhật Ảnh</label>
+                            <input type="file" class="form-control" id="imageUrl" name="imageUrl" accept="image/*" onchange="previewImage(event)" />
+                        </div>
+
+                        <div class="mb-4 text-center">
+                            <label class="form-label">Ảnh Hiện Tại</label><br />
+                            <img src="@Model.ImageUrl" alt="Ảnh hiện tại" class="img-thumbnail mb-2" style="max-height: 200px;" />
+                            <img id="preview" class="img-thumbnail" style="max-height: 200px; display: none;" />
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success me-2 px-4 rounded-pill">
+                                <i class="bi bi-save me-1"></i> Cập Nhật
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4 rounded-pill">
+                                <i class="bi bi-x-circle me-1"></i> Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'inline';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+}

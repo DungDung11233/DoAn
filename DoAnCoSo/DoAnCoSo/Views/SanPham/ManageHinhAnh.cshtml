@@ -1,0 +1,137 @@
+﻿@model DoAnCoSo.Models.SanPham
+
+@{
+    ViewData["Title"] = "Quản lý hình ảnh phụ";
+    var maSanPham = ViewBag.MaSanPham;
+}
+
+<div class="container my-5">
+    <!-- Tiêu đề và nút quay lại -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Quản lý hình ảnh phụ cho: <span class="text-primary">@Model.TenSanPham</span></h2>
+        <a asp-action="Display" asp-route-id="@maSanPham" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left-circle me-1"></i> Quay lại chi tiết
+        </a>
+    </div>
+
+    <!-- Thông báo (nếu có) -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <!-- Form thêm ảnh phụ -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Thêm ảnh phụ mới</h5>
+            <form asp-action="AddHinhAnh" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="maSanPham" value="@maSanPham" />
+                <div class="mb-3">
+                    <label class="form-label">Chọn hình ảnh phụ</label>
+                    <input type="file" name="imageFile" class="form-control" accept="image/*" required />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-1"></i> Thêm ảnh
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Danh sách ảnh phụ -->
+    @if (Model.HinhAnhSanPhams != null && Model.HinhAnhSanPhams.Any())
+    {
+        <div class="row g-4">
+            @foreach (var hinhAnh in Model.HinhAnhSanPhams)
+            {
+                <div class="col-md-3 image-card" style="transition: opacity 0.5s ease-in-out;">
+                    <div class="card h-100 shadow-sm position-relative">
+                        <img src="@Url.Content(hinhAnh.LoaiHinhAnh)" class="card-img-top" alt="Hình ảnh phụ" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body text-center p-2">
+                            <form asp-action="EditHinhAnh" method="post" enctype="multipart/form-data" class="mb-2">
+                                <input type="hidden" name="maHinhAnh" value="@hinhAnh.MaHinhAnhSanPham" />
+                                <input type="file" name="imageFile" class="form-control form-control-sm mb-2" accept="image/*" />
+                                <button type="submit" class="btn btn-warning btn-sm w-100">
+                                    <i class="bi bi-pencil-square me-1"></i> Sửa
+                                </button>
+                            </form>
+                            <form asp-action="DeleteHinhAnh" method="post">
+                                <input type="hidden" name="maHinhAnh" value="@hinhAnh.MaHinhAnhSanPham" />
+                                <button type="submit" class="btn btn-danger btn-sm w-100 delete-btn" onclick="return confirm('Bạn có chắc muốn xóa ảnh này?')">
+                                    <i class="bi bi-trash me-1"></i> Xóa
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="bi bi-info-circle me-1"></i> Không có hình ảnh phụ nào cho sản phẩm này.
+        </div>
+    }
+</div>
+
+<style>
+    /* Hiệu ứng hover cho thẻ ảnh */
+    .image-card .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .image-card .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Hiệu ứng nút */
+    .btn-primary, .btn-warning, .btn-danger {
+        transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+        .btn-primary:hover, .btn-warning:hover, .btn-danger:hover {
+            transform: scale(1.05);
+        }
+
+    /* Căn chỉnh tiêu đề sản phẩm */
+    .text-primary {
+        font-weight: 600;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Hiệu ứng fade khi xóa ảnh
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                if (confirm('Bạn có chắc muốn xóa ảnh này?')) {
+                    e.preventDefault();
+                    const form = this.closest('form');
+                    const card = this.closest('.image-card');
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        form.submit();
+                    }, 500);
+                }
+            });
+        });
+
+        // Hiệu ứng fade khi thêm ảnh (tự động reload trang)
+        window.addEventListener('load', function () {
+            document.querySelectorAll('.image-card').forEach(card => {
+                card.style.opacity = '1';
+            });
+        });
+    </script>
+}

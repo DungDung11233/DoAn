@@ -1,0 +1,223 @@
+@{
+    ViewData["Title"] = "Thống Kê Doanh Thu";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Thống Kê Doanh Thu và Đơn Hàng</h2>
+
+    <!-- Thống kê tổng quan -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Doanh Thu @ViewBag.CurrentYear</h5>
+                    <h3 class="mb-0">@String.Format("{0:N0}", ViewBag.TongDoanhThuNam) VNĐ</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Đơn Hàng @ViewBag.CurrentYear</h5>
+                    <h3 class="mb-0">@ViewBag.TongDonHangNam đơn</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Trung Bình/Đơn</h5>
+                    <h3 class="mb-0">@String.Format("{0:N0}", ViewBag.TrungBinhDonHang) VNĐ</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bộ lọc năm -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="namThongKe" class="form-label">Chọn Năm:</label>
+                <select class="form-select" id="namThongKe"></select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Số Lượng Đơn Hàng Theo Tháng</h5>
+                    <canvas id="donHangChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Doanh Thu Theo Tháng</h5>
+                    <canvas id="doanhThuChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng chi tiết -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Chi Tiết Theo Tháng</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="thongKeTable">
+                            <thead>
+                                <tr>
+                                    <th>Tháng</th>
+                                    <th>Số Đơn Hàng</th>
+                                    <th>Doanh Thu</th>
+                                    <th>% Thay Đổi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let donHangChart;
+        let doanhThuChart;
+
+        // Hàm tạo biểu đồ số lượng đơn hàng
+        function createDonHangChart(labels, data) {
+            const ctx = document.getElementById('donHangChart').getContext('2d');
+            if (donHangChart) {
+                donHangChart.destroy();
+            }
+            donHangChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số lượng đơn hàng',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Hàm tạo biểu đồ doanh thu
+        function createDoanhThuChart(labels, data) {
+            const ctx = document.getElementById('doanhThuChart').getContext('2d');
+            if (doanhThuChart) {
+                doanhThuChart.destroy();
+            }
+            doanhThuChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Doanh thu (VNĐ)',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND'
+                                    }).format(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Hàm cập nhật bảng chi tiết
+        function updateTable(labels, soLuongDonHang, doanhThu, phanTramThayDoi) {
+            const tbody = document.querySelector('#thongKeTable tbody');
+            tbody.innerHTML = '';
+            
+            for (let i = 0; i < labels.length; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${labels[i]}</td>
+                    <td>${soLuongDonHang[i]}</td>
+                    <td>${new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(doanhThu[i])}</td>
+                    <td>
+                        <span class="badge ${phanTramThayDoi[i] > 0 ? 'bg-success' : phanTramThayDoi[i] < 0 ? 'bg-danger' : 'bg-secondary'}">
+                            ${phanTramThayDoi[i] > 0 ? '+' : ''}${phanTramThayDoi[i]}%
+                            ${phanTramThayDoi[i] !== 0 ? `<i class="bi bi-${phanTramThayDoi[i] > 0 ? 'arrow-up' : 'arrow-down'}"></i>` : ''}
+                        </span>
+                        ${phanTramThayDoi[i] === -100 ? '<br><small class="text-muted">Không có doanh thu</small>' : ''}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        // Hàm load dữ liệu thống kê
+        function loadThongKe(nam) {
+            $.get('/ThongKe/GetThongKeTheoThang', { nam: nam }, function(data) {
+                createDonHangChart(data.labels, data.soLuongDonHang);
+                createDoanhThuChart(data.labels, data.doanhThu);
+                updateTable(data.labels, data.soLuongDonHang, data.doanhThu, data.phanTramThayDoi);
+            });
+        }
+
+        // Load danh sách năm
+        $(document).ready(function() {
+            $.get('/ThongKe/GetNamThongKe', function(years) {
+                const select = $('#namThongKe');
+                years.forEach(year => {
+                    select.append(new Option(year, year));
+                });
+                
+                if (years.length > 0) {
+                    loadThongKe(years[0]);
+                }
+            });
+
+            // Sự kiện khi chọn năm
+            $('#namThongKe').change(function() {
+                loadThongKe($(this).val());
+            });
+        });
+    </script>
+} 

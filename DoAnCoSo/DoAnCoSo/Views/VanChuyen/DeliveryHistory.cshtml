@@ -1,0 +1,56 @@
+@model IEnumerable<DoAnCoSo.Models.ChiTietVanChuyen>
+@using DoAnCoSo.Models
+
+@{
+    ViewData["Title"] = "Lịch sử giao hàng";
+}
+
+<div class="container mt-4">
+    <h2>Lịch sử giao hàng</h2>
+
+    <div class="mb-3">
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Đơn hàng đã giao</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Mã vận chuyển</th>
+                            <th>Ngày vận chuyển</th>
+                            <th>Trạng thái</th>
+                            <th>Phương tiện</th>
+                            <th>Nhân viên</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaDonHang</td>
+                                <td>@item.MaVanChuyen</td>
+                                <td>@item.PhieuVanChuyen.NgayVanChuyen.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@item.TrangThai</td>
+                                <td>@(item.PhieuVanChuyen.PhuongTienVanChuyen?.LoaiPhuongTien ?? "Không xác định")</td>
+                                <td>@(item.PhieuVanChuyen.NhanVien?.TenNhanVien ?? "Không xác định")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <p>Chưa có đơn hàng nào đã giao thành công.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div> 

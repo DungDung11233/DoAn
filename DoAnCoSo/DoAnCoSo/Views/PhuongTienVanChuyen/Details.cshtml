@@ -1,0 +1,72 @@
+@model DoAnCoSo.Models.PhuongTienVanChuyen
+
+@{
+    ViewData["Title"] = "Chi tiết phương tiện vận chuyển";
+}
+
+<div class="container mt-4">
+    <h2>Chi tiết phương tiện vận chuyển</h2>
+
+    <div class="mb-3">
+        <a asp-action="Edit" asp-route-id="@Model.MaPhuongTien" class="btn btn-warning">Sửa</a>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Thông tin phương tiện</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Mã phương tiện:</dt>
+                <dd class="col-sm-9">@Model.MaPhuongTien</dd>
+
+                <dt class="col-sm-3">Loại phương tiện:</dt>
+                <dd class="col-sm-9">@Model.LoaiPhuongTien</dd>
+
+                <dt class="col-sm-3">Trọng tải (kg):</dt>
+                <dd class="col-sm-9">@Model.TrongTai</dd>
+            </dl>
+        </div>
+    </div>
+
+    @if (Model.PhieuVanChuyens != null && Model.PhieuVanChuyens.Any())
+    {
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Các phiếu vận chuyển sử dụng phương tiện này</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã vận chuyển</th>
+                            <th>Ngày vận chuyển</th>
+                            <th>Nhân viên</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PhieuVanChuyens)
+                        {
+                            <tr>
+                                <td>@item.MaVanChuyen</td>
+                                <td>@item.NgayVanChuyen.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@(item.NhanVien?.TenNhanVien ?? "Không xác định")</td>
+                                <td>
+                                    <a asp-controller="VanChuyen" asp-action="Details" asp-route-id="@item.MaVanChuyen" class="btn btn-sm btn-info">Chi tiết</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-4">
+            <p>Chưa có phiếu vận chuyển nào sử dụng phương tiện này.</p>
+        </div>
+    }
+</div> 

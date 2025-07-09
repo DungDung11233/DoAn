@@ -1,0 +1,67 @@
+@model DoAnCoSo.ViewModels.CreateShippingViewModel
+
+@{
+    ViewData["Title"] = "Tạo phiếu vận chuyển";
+}
+
+<div class="container mt-4">
+    <h2>Tạo phiếu vận chuyển mới</h2>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Thông tin vận chuyển</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="MaDonHangs" class="form-label"></label>
+                    <select asp-for="MaDonHangs" class="form-select" asp-items="ViewBag.MaDonHangs" multiple size="5">
+                    </select>
+                    <span asp-validation-for="MaDonHangs" class="text-danger"></span>
+                    <small class="form-text text-muted">Giữ phím Ctrl để chọn nhiều đơn hàng</small>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MaPhuongTienID" class="form-label"></label>
+                    <select asp-for="MaPhuongTienID" class="form-select" asp-items="ViewBag.MaPhuongTienID">
+                        <option value="">-- Chọn phương tiện --</option>
+                    </select>
+                    <span asp-validation-for="MaPhuongTienID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MaNhanVienID" class="form-label"></label>
+                    <select asp-for="MaNhanVienID" class="form-select" asp-items="ViewBag.MaNhanVienID">
+                        <option value="">-- Chọn nhân viên --</option>
+                    </select>
+                    <span asp-validation-for="MaNhanVienID" class="text-danger"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-truck me-2"></i>Tạo phiếu vận chuyển
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                        <i class="bi bi-arrow-left me-2"></i>Quay lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function() {
+            // Sử dụng Select2 để tạo dropdown chọn nhiều với tìm kiếm
+            $('#MaDonHangs').select2({
+                placeholder: "-- Chọn đơn hàng --",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+} 

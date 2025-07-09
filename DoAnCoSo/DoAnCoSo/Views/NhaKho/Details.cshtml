@@ -1,0 +1,43 @@
+﻿@model DoAnCoSo.Models.NhaKho
+
+@{
+    ViewData["Title"] = "Chi Tiết Nhà Kho";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Chi Tiết Nhà Kho: @Model.TenNhaKho</h2>
+    <p><strong>Địa Chỉ:</strong> @Model.DiaChi</p>
+    <p><strong>Loại Kho:</strong> @Model.LoaiKho</p>
+    <a asp-action="AddProductToWarehouse" asp-route-id="@Model.MaNhaKho" class="btn btn-success mb-3">Thêm Sản Phẩm</a>
+
+    <h3 class="mt-4">Danh Sách Sản Phẩm Trong Kho</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Ngày Nhập</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chiTiet in Model.ChiTietKhoHangs)
+            {
+                <tr>
+                    <td>@chiTiet.SanPham.MaSanPham</td>
+                    <td>@chiTiet.SanPham.TenSanPham</td>
+                    <td>@chiTiet.SoLuong</td>
+                    <td>@chiTiet.NgayNhap.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-action="EditProductInWarehouse" asp-route-id="@Model.MaNhaKho" asp-route-maSanPham="@chiTiet.SanPham.MaSanPham" class="btn btn-warning btn-sm">Sửa</a>
+                        <form asp-action="DeleteProductFromWarehouse" asp-route-id="@Model.MaNhaKho" asp-route-maSanPham="@chiTiet.SanPham.MaSanPham" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này khỏi kho?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>

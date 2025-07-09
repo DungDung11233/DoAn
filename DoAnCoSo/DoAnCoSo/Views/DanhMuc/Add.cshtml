@@ -1,0 +1,22 @@
+﻿@model DoAnCoSo.Models.DanhMuc
+
+@{
+    ViewData["Title"] = "Thêm danh mục";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Thêm danh mục</h2>
+    <form asp-action="Add" method="post" class="shadow p-4 bg-light rounded">
+        <div class="form-group mb-3">
+            <label for="TenDanhMuc" class="form-label">Tên danh mục</label>
+            <input asp-for="TenDanhMuc" class="form-control" placeholder="Nhập tên danh mục" required />
+        </div>
+        <div class="mb-3">
+            <label asp-for="MoTa" class="form-label"></label>
+            <textarea asp-for="MoTa" class="form-control"></textarea>
+            <span asp-validation-for="MoTa" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Thêm</button>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+﻿@model DoAnCoSo.Models.DonHang
+
+<h2>Xóa đơn hàng #@Model.MaDonHang</h2>
+
+<h3>Bạn có chắc muốn xóa đơn hàng này?</h3>
+<div>
+    <p><strong>Ngày đặt hàng:</strong> @Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Tổng tiền:</strong> @Model.TongSoTien.ToString("N0") VND</p>
+    <p><strong>Địa chỉ giao hàng:</strong> @Model.DiaChiGiaoHang</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="MaDonHang" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>

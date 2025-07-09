@@ -1,0 +1,27 @@
+﻿@model DoAnCoSo.Models.DanhMuc
+
+@{
+    ViewData["Title"] = "Cập nhật danh mục";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="MaDanhMuc" />
+    <div class="form-group">
+        <label asp-for="TenDanhMuc"></label>
+        <input asp-for="TenDanhMuc" class="form-control" />
+        <span asp-validation-for="TenDanhMuc" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MoTa"></label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

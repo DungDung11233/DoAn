@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DoAnCoSo.Models.GiamGia>
+
+@{
+    ViewData["Title"] = "Danh Sách Mã Giảm Giá";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Add", "GiamGia")">Thêm Mới Mã Giảm Giá</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+			<th>Mã Giảm Giá </th>
+            <th>Ngày Áp Dụng</th>
+            <th>Giảm Theo Số Tiền</th>
+            <th>Giảm Theo Phần Trăm</th>
+			<th>Số Lượng Còn Lại</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+				<td>@item.Code</td>
+                <td>@item.NgayApDung.ToString("dd/MM/yyyy")</td>
+                <td>@item.GiamTheoSoTien</td>
+                <td>@item.GiamTheoPhanTram</td>
+				<td>
+                    @if (item.SoLuong > 0)
+                    {
+                        <span class="badge badge-success text-danger">Còn Hạn</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger text-danger">Hết Hạn</span>
+                    }
+                <td>                   
+                    <a href="@Url.Action("Update", "GiamGia", new { id = item.MaGiamGia })" class="btn btn-warning">Sửa</a>
+                    <a href="@Url.Action("Delete", "GiamGia", new { id = item.MaGiamGia })" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

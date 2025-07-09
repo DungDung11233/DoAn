@@ -1,0 +1,76 @@
+﻿@model DoAnCoSo.Models.DonHang
+
+<h2>Chi tiết đơn hàng #@Model.MaDonHang</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Warning"] != null)
+{
+    <div class="alert alert-warning">@TempData["Warning"]</div>
+}
+
+<div>
+    <p><strong>Ngày đặt hàng:</strong> @Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Tổng tiền:</strong> @Model.TongSoTien.ToString("N0") VND</p>
+    <p><strong>Địa chỉ giao hàng:</strong> @(Model.DiaChiGiaoHang ?? "Không xác định")</p>
+    <p><strong>Ghi chú:</strong> @(Model.GhiChu ?? "Không có")</p>
+    <p><strong>Khách hàng:</strong> @(Model.KhachHang?.TenKhachHang ?? "Không xác định")</p>
+    <p><strong>Phương thức thanh toán:</strong> @(Model.PhuongThucThanhToan?.TenPTTT ?? "Không xác định")</p>
+</div>
+
+<h3>Chi tiết sản phẩm</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ChiTietDonHangs != null && Model.ChiTietDonHangs.Any())
+        {
+            foreach (var chiTiet in Model.ChiTietDonHangs)
+            {
+                <tr>
+                    <td>@(chiTiet.SanPham?.TenSanPham ?? "Không xác định")</td>
+                    <td>@chiTiet.SoLuong</td>
+                    <td>@(chiTiet.SanPham?.GiaTheoKG.ToString("N0") ?? "0") VND</td>
+                    <td>@((chiTiet.SoLuong * (chiTiet.SanPham?.GiaTheoKG ?? 0)).ToString("N0")) VND</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">Không có sản phẩm nào</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Trạng thái hiện tại</h3>
+@{
+    var currentStatus = Model.ChiTietTrangThaiDonHangs?.OrderByDescending(ct => ct.MaTrangThai).FirstOrDefault();
+}
+<p><strong>@(currentStatus?.TrangThaiDonHang?.TenTrangThai ?? "Chưa có trạng thái")</strong></p>
+
+<h3>Lịch sử trạng thái</h3>
+@if (Model.ChiTietTrangThaiDonHangs != null && Model.ChiTietTrangThaiDonHangs.Any())
+{
+    <ul>
+        @foreach (var chiTiet in Model.ChiTietTrangThaiDonHangs.OrderBy(ct => ct.MaTrangThai))
+        {
+            <li>@(chiTiet.TrangThaiDonHang?.TenTrangThai ?? "Không xác định")</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Chưa có lịch sử trạng thái.</p>
+}
+
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<DoAnCoSo.Models.NhaKho>
+
+@{
+    ViewData["Title"] = "Danh sách Nhà Kho";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Danh sách Nhà Kho</h2>
+    <a asp-action="Create" class="btn btn-success mb-3">Thêm Nhà Kho</a>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã Nhà Kho</th>
+                <th>Tên Nhà Kho</th>
+                <th>Địa Chỉ</th>
+                <th>Loại Kho</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nhaKho in Model)
+            {
+                <tr>
+                    <td>@nhaKho.MaNhaKho</td>
+                    <td>@nhaKho.TenNhaKho</td>
+                    <td>@nhaKho.DiaChi</td>
+                    <td>@nhaKho.LoaiKho</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@nhaKho.MaNhaKho" class="btn btn-primary btn-sm">Chi Tiết</a>
+                        <a asp-action="Edit" asp-route-id="@nhaKho.MaNhaKho" class="btn btn-warning btn-sm">Sửa</a>
+                        <form asp-action="Delete" asp-route-id="@nhaKho.MaNhaKho" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa nhà kho này?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

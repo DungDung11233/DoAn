@@ -1,0 +1,43 @@
+﻿@model DoAnCoSo.Models.GiamGia
+
+@{
+    ViewData["Title"] = "Thêm Mã Giảm Giá";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="NgayApDung">Mã</label>
+        <input type="string" class="form-control" id="Code" name="Code" required />
+    </div>
+
+    <div class="form-group">
+        <label for="NgayApDung">Ngày Áp Dụng</label>
+        <input type="date" class="form-control" id="NgayApDung" name="NgayApDung" required />
+    </div>
+
+    <div class="form-group">
+        <label for="GiamTheoSoTien">Giảm Theo Số Tiền</label>
+        <input type="number" step="0.01" class="form-control" id="GiamTheoSoTien" name="GiamTheoSoTien" />
+    </div>
+
+    <div class="form-group">
+        <label for="GiamTheoPhanTram">Giảm Theo Phần Trăm</label>
+        <input type="number" step="0.01" class="form-control" id="GiamTheoPhanTram" name="GiamTheoPhanTram" />
+    </div>
+
+    <div class="form-group">
+        <label for="SoLuongConLai">Số Lượng Còn Lại</label>
+        <input type="number" class="form-control" id="SoLuongConLai" name="SoLuongConLai" required />
+    </div>
+
+    <div class="form-group">
+        <label for="SoLanToiDaDungMa">Số Lần Tối Đa Dùng Mã</label>
+        <input type="number" class="form-control" id="SoLanToiDaDungMa" name="SoLanToiDaDungMa" value="1" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Thêm</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DoAnCoSo.Models.DonHang>
+
+<h2>Danh sách đơn hàng</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã đơn hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Khách hàng</th>
+            <th>Trạng thái hiện tại</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donHang in Model)
+        {
+            var currentStatus = donHang.ChiTietTrangThaiDonHangs?.OrderByDescending(ct => ct.MaTrangThai).FirstOrDefault();
+            <tr>
+                <td>@donHang.MaDonHang</td>
+                <td>@donHang.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@donHang.TongSoTien.ToString("N0") VND</td>
+                <td>@(donHang.KhachHang?.TenKhachHang ?? "Không xác định")</td>
+                <td>@(currentStatus?.TrangThaiDonHang?.TenTrangThai ?? "Chưa có trạng thái")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@donHang.MaDonHang" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a asp-action="UpdateStatus" asp-route-id="@donHang.MaDonHang" class="btn btn-primary btn-sm">Cập nhật trạng thái</a>
+                    <a asp-action="Update" asp-route-id="@donHang.MaDonHang" class="btn btn-warning btn-sm">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@donHang.MaDonHang" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

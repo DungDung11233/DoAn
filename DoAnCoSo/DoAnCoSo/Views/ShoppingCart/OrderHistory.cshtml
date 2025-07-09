@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DoAnCoSo.Models.DonHang>
+
+<h2>Lịch sử đơn hàng</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã đơn hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái hiện tại</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var donHang in Model)
+            {
+                var currentStatus = donHang.ChiTietTrangThaiDonHangs?.OrderByDescending(ct => ct.MaTrangThai).FirstOrDefault();
+                <tr>
+                    <td>@donHang.MaDonHang</td>
+                    <td>@donHang.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@donHang.TongSoTien.ToString("N0") VND</td>
+                    <td>@(currentStatus?.TrangThaiDonHang?.TenTrangThai ?? "Chưa có trạng thái")</td>
+                    <td>
+                        <a asp-action="ViewOrder" asp-route-maDonHang="@donHang.MaDonHang" class="btn btn-info btn-sm">Xem chi tiết</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Bạn chưa có đơn hàng nào.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Quay lại</a>

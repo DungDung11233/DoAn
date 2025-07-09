@@ -1,0 +1,80 @@
+﻿@model DoAnCoSo.Models.HoaDon
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Chi Tiết Hóa Đơn";
+}
+
+<!-- Font Awesome cho các biểu tượng -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="container my-5">
+    <h2 class="text-center text-primary mb-4 fw-bold">Chi Tiết Hóa Đơn</h2>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm rounded">
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h5 class="fw-bold">Thông Tin Hóa Đơn</h5>
+                    <p><strong>Mã Hóa Đơn:</strong> @Model.MaHoaDon</p>
+                    <p><strong>Ngày Tạo:</strong> @Model.NgayTaoHoaDon.ToString("/dd/MM/yyyy HH:mm:ss")</p>
+                    <p><strong>Mã Đơn Hàng:</strong> @Model.MaDonHangID</p>
+                    <p><strong>Tổng Số Tiền:</strong> @Model.TongSoTien.ToString("c0", CultureInfo.GetCultureInfo("vi-VN"))</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="fw-bold">Thông Tin Khách Hàng</h5>
+                    <p>Tên Khách Hàng: @Model.DonHang.KhachHang?.TenKhachHang</p> <!-- Sử dụng TenNguoiDung -->                    <p><strong>Địa Chỉ Giao Hàng:</strong> @Model.DonHang.DiaChiGiaoHang</p>
+                    <p><strong>Phương Thức Thanh Toán:</strong> @Model.DonHang.PhuongThucThanhToan.TenPTTT</p>
+                </div>
+            </div>
+
+            <h5 class="fw-bold mb-3">Chi Tiết Đơn Hàng</h5>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Sản Phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số Lượng</th>
+                            <th scope="col">Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DonHang.ChiTietDonHangs)
+                        {
+                            <tr>
+                                <td>@item.SanPham.TenSanPham</td>
+                                <td>@item.SanPham.GiaTheoKG.ToString("c0", CultureInfo.GetCultureInfo("vi-VN"))</td>
+                                <td>@item.SoLuong</td>
+                                <td>@((item.SanPham.GiaTheoKG * item.SoLuong).ToString("c0", CultureInfo.GetCultureInfo("vi-VN")))</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-end fw-bold">Tổng Cộng:</td>
+                            <td class="fw-bold">@Model.DonHang.TongSoTien.ToString("c0", CultureInfo.GetCultureInfo("vi-VN"))</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                @* <a href="@Url.Action("DownloadInvoice", "ShoppingCart", new { maHoaDon = Model.MaHoaDon })" class="btn btn-success rounded-pill px-4 me-2"> *@
+                @*     <i class="fas fa-download me-2"></i>Tải Hóa Đơn (PDF) *@
+                @* </a> *@
+                <a href="@Url.Action("OrderHistory", "ShoppingCart")" class="btn btn-outline-secondary rounded-pill px-4">
+                    <i class="fas fa-arrow-left me-2"></i>Quay Lại Lịch Sử Đơn Hàng
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

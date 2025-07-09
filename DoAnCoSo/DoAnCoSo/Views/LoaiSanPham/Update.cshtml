@@ -1,0 +1,32 @@
+﻿@model DoAnCoSo.Models.LoaiSanPham
+
+@{
+    ViewData["Title"] = "Cập nhật loại sản phẩm";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="MaLoai" />
+
+    <div class="form-group">
+        <label asp-for="TenLoai" class="control-label"></label>
+        <input asp-for="TenLoai" class="form-control" />
+        <span asp-validation-for="TenLoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GhiChu" class="control-label"></label>
+        <textarea asp-for="GhiChu" class="form-control"></textarea>
+        <span asp-validation-for="GhiChu" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <a class="btn btn-secondary" asp-action="Index">Hủy</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

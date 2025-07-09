@@ -1,0 +1,24 @@
+﻿@model DoAnCoSo.Models.LoaiSanPham
+
+@{
+    ViewData["Title"] = "Xóa loại sản phẩm";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Bạn có chắc chắn muốn xóa loại sản phẩm sau không?</h4>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Tên Loại: @Model.TenLoai</h5>
+        <p><strong>Mã Loại:</strong> @Model.MaLoai</p>
+        <p><strong>Ghi Chú:</strong> @Model.GhiChu</p>
+    </div>
+</div>
+
+<form method="post" asp-action="DeleteConfirmed">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.MaLoai" />
+    <button type="submit" class="btn btn-danger">Xóa Loại Sản Phẩm</button>
+    <a href="@Url.Action("Index", "LoaiSanPham")" class="btn btn-secondary">Hủy</a>
+</form>

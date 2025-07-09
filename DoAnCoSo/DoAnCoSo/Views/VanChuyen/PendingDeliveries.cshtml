@@ -1,0 +1,80 @@
+@model IEnumerable<DoAnCoSo.ViewModels.PendingDeliveryViewModel>
+
+@{
+    ViewData["Title"] = "Đơn hàng đang vận chuyển";
+}
+
+<div class="container mt-4">
+    <h2>Đơn hàng đang vận chuyển</h2>
+
+    <div class="mb-3">
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h5 class="mb-0">Đơn hàng đang giao</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Mã vận chuyển</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Ngày vận chuyển</th>
+                            <th>Dự kiến giao hàng</th>
+                            <th>Phương tiện</th>
+                            <th>Nhân viên</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaDonHang</td>
+                                <td>@item.MaVanChuyen</td>
+                                <td>@item.LoaiSanPham</td>
+                                <td>@item.NgayVanChuyen.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@item.NgayDuKienGiaoHang.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@(item.PhuongTien ?? "Không xác định")</td>
+                                <td>@(item.NhanVien ?? "Không xác định")</td>
+                                <td>
+                                    <form asp-action="CompleteDelivery" method="post">
+                                        <input type="hidden" name="maDonHang" value="@item.MaDonHang" />
+                                        <button type="submit" class="btn btn-sm btn-success">Xác nhận giao hàng</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <p>Không có đơn hàng nào đang vận chuyển.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div> 

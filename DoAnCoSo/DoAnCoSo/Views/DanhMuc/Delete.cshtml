@@ -1,0 +1,18 @@
+﻿@model DoAnCoSo.Models.DanhMuc
+
+@{
+    ViewData["Title"] = "Xóa danh mục";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3 text-danger">Xóa danh mục</h2>
+    <div class="alert alert-warning">
+        Bạn có chắc chắn muốn xóa danh mục <strong>@Model.TenDanhMuc</strong> không?
+    </div>
+    <form method="post" asp-action="DeleteConfirmed">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.MaDanhMuc" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a href="@Url.Action("Index", "DanhMuc")" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+﻿@model DoAnCoSo.Models.DonHang
+
+<h2>Cập nhật trạng thái đơn hàng #@Model.MaDonHang</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div>
+    <p><strong>Ngày đặt hàng:</strong> @Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Tổng tiền:</strong> @Model.TongSoTien.ToString("N0") VND</p>
+    <p><strong>Địa chỉ giao hàng:</strong> @Model.DiaChiGiaoHang</p>
+    <p><strong>Khách hàng:</strong> @(Model.KhachHang?.TenKhachHang ?? "Không xác định")</p>
+</div>
+
+<h3>Chi tiết sản phẩm</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chiTiet in Model.ChiTietDonHangs ?? Enumerable.Empty<ChiTietDonHang>())
+        {
+            <tr>
+                <td>@(chiTiet.SanPham?.TenSanPham ?? "Không xác định")</td>
+                <td>@chiTiet.SoLuong</td>
+                <td>@(chiTiet.SanPham?.GiaTheoKG.ToString("N0") ?? "0") VND</td>
+                <td>@((chiTiet.SoLuong * (chiTiet.SanPham?.GiaTheoKG ?? 0)).ToString("N0")) VND</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="UpdateStatus" method="post">
+    <input type="hidden" name="maDonHang" value="@Model.MaDonHang" />
+    <div class="form-group">
+        <label>Chọn trạng thái mới</label>
+        <select name="maTrangThai" class="form-control">
+            @foreach (var trangThai in ViewBag.TrangThaiList)
+            {
+                <option value="@trangThai.Value">@trangThai.Text</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Cập nhật trạng thái</button>
+</form>
+
+<h3>Lịch sử trạng thái</h3>
+<ul>
+    @foreach (var chiTiet in Model.ChiTietTrangThaiDonHangs?.OrderBy(ct => ct.MaTrangThai) ?? Enumerable.Empty<ChiTietTrangThaiDonHang>())
+    {
+        <li>@chiTiet.TrangThaiDonHang?.TenTrangThai</li>
+    }
+</ul>

@@ -1,0 +1,285 @@
+﻿@model PhieuNhapHang
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Tạo Phiếu Nhập Hàng</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="fw-bold">Tổng Tiền</label>
+                            <div class="input-group">
+                                <input asp-for="TongTien" id="TongTien" class="form-control" readonly />
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="fw-bold">Tổng Số Lượng</label>
+                            <input asp-for="TongSoLuong" id="TongSoLuong" class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chiTietItems">
+                    <div class="chiTietItem card mb-4">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="fw-bold">Tên Sản Phẩm</label>
+                                    <input type="text" name="sanPhams[0].TenSanPham" class="form-control" required />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="fw-bold">Nguồn Gốc</label>
+                                    <input type="text" name="sanPhams[0].NguonGoc" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="fw-bold">Ngày Thu Hoạch</label>
+                                    <input type="date" name="sanPhams[0].NgayThuHoach" class="form-control" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="fw-bold">Loại Bảo Quản</label>
+                                    <input type="text" name="sanPhams[0].LoaiBaoQuan" class="form-control" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="fw-bold">Danh Mục</label>
+                                    <select asp-items="ViewBag.DanhMucs" name="sanPhams[0].DanhMucID" class="form-select" required>
+                                        <option value="">-- Chọn Danh Mục --</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="fw-bold">Loại Sản Phẩm</label>
+                                    <select asp-items="ViewBag.LoaiSanPhams" name="sanPhams[0].MaLoaiID" class="form-select" required>
+                                        <option value="">-- Chọn Loại --</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="fw-bold">Số Lượng</label>
+                                    <input type="number" min="1" name="soLuongSanPhams[0]" class="form-control soLuongInput" required oninput="updateTotals()" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="fw-bold">Giá Nhập Hàng</label>
+                                    <div class="input-group">
+                                        <input type="number" step="0.01" name="giaNhapHangs[0]" class="form-control giaNhapInput" required oninput="updateTotals()" />
+                                        <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="fw-bold">Ảnh Sản Phẩm</label>
+                                    <div class="input-group">
+                                        <input type="file" name="images[0]" class="form-control imageInput" accept="image/*" onchange="previewImage(this, 0)" />
+                                        <button type="button" class="btn btn-outline-secondary" onclick="clearImage(0)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="mt-2 image-preview" id="imagePreview_0"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" onclick="addChiTietItem()" class="btn btn-success me-2">
+                        <i class="fas fa-plus"></i> Thêm Sản Phẩm
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Xác Nhận
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let itemCount = 1;
+
+    function addChiTietItem() {
+        const container = document.getElementById('chiTietItems');
+        const newItem = `
+            <div class="chiTietItem card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="fw-bold">Tên Sản Phẩm</label>
+                            <input type="text" name="sanPhams[${itemCount}].TenSanPham" class="form-control" required />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="fw-bold">Nguồn Gốc</label>
+                            <input type="text" name="sanPhams[${itemCount}].NguonGoc" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="fw-bold">Ngày Thu Hoạch</label>
+                            <input type="date" name="sanPhams[${itemCount}].NgayThuHoach" class="form-control" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fw-bold">Loại Bảo Quản</label>
+                            <input type="text" name="sanPhams[${itemCount}].LoaiBaoQuan" class="form-control" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fw-bold">Danh Mục</label>
+                            <select asp-items="ViewBag.DanhMucs" name="sanPhams[${itemCount}].DanhMucID" class="form-select" required>
+                                <option value="">-- Chọn Danh Mục --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fw-bold">Loại Sản Phẩm</label>
+                            <select asp-items="ViewBag.LoaiSanPhams" name="sanPhams[${itemCount}].MaLoaiID" class="form-select" required>
+                                <option value="">-- Chọn Loại --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="fw-bold">Số Lượng</label>
+                            <input type="number" min="1" name="soLuongSanPhams[${itemCount}]" class="form-control soLuongInput" required oninput="updateTotals()" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="fw-bold">Giá Nhập Hàng</label>
+                            <div class="input-group">
+                                <input type="number" step="0.01" name="giaNhapHangs[${itemCount}]" class="form-control giaNhapInput" required oninput="updateTotals()" />
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="fw-bold">Ảnh Sản Phẩm</label>
+                            <div class="input-group">
+                                <input type="file" name="images[${itemCount}]" class="form-control imageInput" accept="image/*" onchange="previewImage(this, ${itemCount})" />
+                                <button type="button" class="btn btn-outline-secondary" onclick="clearImage(${itemCount})">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="mt-2 image-preview" id="imagePreview_${itemCount}"></div>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="d-block">&nbsp;</label>
+                            <button type="button" class="btn btn-danger" onclick="removeItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        container.insertAdjacentHTML('beforeend', newItem);
+        itemCount++;
+        updateTotals();
+    }
+
+    function removeItem(button) {
+        button.closest('.chiTietItem').remove();
+        updateTotals();
+    }
+
+    function updateTotals() {
+        let totalQuantity = 0;
+        let totalAmount = 0;
+
+        const items = document.querySelectorAll('.chiTietItem');
+        items.forEach(item => {
+            const quantity = parseInt(item.querySelector('.soLuongInput').value) || 0;
+            const price = parseFloat(item.querySelector('.giaNhapInput').value) || 0;
+            totalQuantity += quantity;
+            totalAmount += quantity * price;
+        });
+
+        document.getElementById('TongSoLuong').value = totalQuantity;
+        document.getElementById('TongTien').value = totalAmount.toFixed(2);
+    }
+
+    function previewImage(input, index) {
+        const preview = document.getElementById(`imagePreview_${index}`);
+        preview.innerHTML = '';
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '200px';
+                img.style.maxHeight = '200px';
+                img.classList.add('img-thumbnail');
+                preview.appendChild(img);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function clearImage(index) {
+        const input = document.querySelector(`input[name="images[${index}]"]`);
+        const preview = document.getElementById(`imagePreview_${index}`);
+        input.value = '';
+        preview.innerHTML = '';
+    }
+
+    function validateForm() {
+        const items = document.querySelectorAll('.chiTietItem');
+        if (items.length === 0) {
+            alert('Vui lòng thêm ít nhất một sản phẩm.');
+            return false;
+        }
+
+        let isValid = true;
+        items.forEach((item, index) => {
+            const requiredInputs = item.querySelectorAll('input[required], select[required]');
+            requiredInputs.forEach(input => {
+                if (!input.value) {
+                    alert(`Vui lòng điền đầy đủ thông tin cho sản phẩm ${index + 1}`);
+                    isValid = false;
+                    return false;
+                }
+            });
+        });
+
+        if (!isValid) return false;
+
+        return confirm('Xác nhận tạo phiếu nhập hàng với tổng số lượng và tổng tiền đã hiển thị?');
+    }
+</script>
+
+<style>
+    .image-preview {
+        min-height: 100px;
+        border: 1px dashed #ccc;
+        margin-top: 10px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+    }
+
+    .image-preview img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    }
+
+    .card-header {
+        border-bottom: none;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+</style>

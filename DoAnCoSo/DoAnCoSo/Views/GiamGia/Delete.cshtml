@@ -1,0 +1,21 @@
+﻿@model DoAnCoSo.Models.GiamGia
+
+@{
+    ViewData["Title"] = "Xóa Mã Giảm Giá";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h3>Are you sure you want to delete the discount code @Model.MaGiamGia?</h3>
+    <p><strong>Ngày Áp Dụng:</strong> @Model.NgayApDung.ToString("dd/MM/yyyy")</p>
+    <p><strong>Giảm Theo Số Tiền:</strong> @Model.GiamTheoSoTien</p>
+    <p><strong>Giảm Theo Phần Trăm:</strong> @Model.GiamTheoPhanTram</p>
+</div>
+
+<form method="post" asp-action="DeleteConfirmed">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.MaGiamGia" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="@Url.Action("Index", "GiamGia")" class="btn btn-secondary">Hủy</a>
+</form>
