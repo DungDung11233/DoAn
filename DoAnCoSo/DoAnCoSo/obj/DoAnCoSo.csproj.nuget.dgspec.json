@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj": {}
+    "E:\\ThuTap\\DoAn\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj": {}
   },
   "projects": {
-    "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj": {
+    "E:\\ThuTap\\DoAn\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj",
+        "projectUniqueName": "E:\\ThuTap\\DoAn\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj",
         "projectName": "DoAnCoSo",
-        "projectPath": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj",
+        "projectPath": "E:\\ThuTap\\DoAn\\DoAnCoSo\\DoAnCoSo\\DoAnCoSo.csproj",
         "packagesPath": "C:\\Users\\DUNG\\.nuget\\packages\\",
-        "outputPath": "E:\\DoAnCoSoHoanChinh\\DoAnCoSo(HoanThien_Ngay23_5)\\DoAnCoSo\\DoAnCoSo\\obj\\",
+        "outputPath": "E:\\ThuTap\\DoAn\\DoAnCoSo\\DoAnCoSo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
