@@ -1,5 +1,5 @@
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
 COPY DoAnCoSo/*.csproj ./DoAnCoSo/
@@ -9,7 +9,7 @@ COPY . .
 RUN dotnet publish DoAnCoSo/DoAnCoSo.csproj -c Release -o out
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/out .
 
